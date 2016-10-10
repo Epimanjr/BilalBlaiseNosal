@@ -1,10 +1,15 @@
 package fr.miage.bilalblaisenosal.bdd;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 /**
  * Unique classe qui permet de gérer les connections à la base de données.
@@ -80,8 +85,8 @@ public class Connector {
     private void initConnection() throws SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            
-            String url ="jdbc:mysql://localhost/"+this.baseName+"?useLegacyDatetimeCode=false&serverTimezone=Europe/Berlin";
+
+            String url = "jdbc:mysql://localhost/" + this.baseName + "?useLegacyDatetimeCode=false&serverTimezone=Europe/Berlin";
             this.connection = DriverManager.getConnection(url, this.login, this.password);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -122,6 +127,39 @@ public class Connector {
 
     public void setConnectionInformation() {
         // TODO Recherche des informations dans le fichier .properties
-        
+        Properties prop = new Properties();
+        InputStream input = null;
+
+        try {
+            ClassLoader classLoader = getClass().getClassLoader();
+            File file = new File(classLoader.getResource("bdd/connexion.properties").getFile());
+
+            System.out.println(file.getAbsolutePath());
+            input = new FileInputStream(file);
+
+            // load a properties file
+            prop.load(input);
+
+            // get the property value and print it out
+            System.out.println(prop.getProperty("database"));
+            System.out.println(prop.getProperty("dbuser"));
+            System.out.println(prop.getProperty("dbpassword"));
+
+            setConnectionInformation(prop.getProperty("database"), prop.getProperty("dbuser"), prop.getProperty("dbpassword"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Connector.getConnector().setConnectionInformation();
     }
 }

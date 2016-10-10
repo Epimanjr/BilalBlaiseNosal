@@ -11,12 +11,12 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mainClass>fr.miage.bilalblaisenosal.MainApp</mainClass>
+        <mainClass>fr.miage.bilalblaisenosal.bdd.Connector</mainClass>
     </properties>
 
     <organization>
         <!-- Used as the 'Vendor' for JNLP generation -->
-        <name>Your Organisation</name>
+        <name>Nosal BLAISE</name>
     </organization>
     
     <dependencies>
