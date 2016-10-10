@@ -83,6 +83,8 @@ public class Connector {
      * Permet d'initialiser la connexion à la base de données.
      */
     private void initConnection() throws SQLException {
+        setConnectionInformation();
+        
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
@@ -90,6 +92,22 @@ public class Connector {
             this.connection = DriverManager.getConnection(url, this.login, this.password);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Permet d'effectuer des requêtes d'insertion à la base de données.
+     * 
+     * @param sql Requête SQL
+     * @throws SQLException Exception si on arrive pas à effectuer la requête.
+     */
+    public static void insert(String sql) throws SQLException {
+        // Récupération de la connexion
+        Connection connection = Connector.getConnector().getConnection();
+        if (connection != null) {
+            // Connexion OK
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
         }
     }
 

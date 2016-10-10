@@ -1,6 +1,8 @@
 package fr.miage.bilalblaisenosal.metier;
 
+import fr.miage.bilalblaisenosal.bdd.Connector;
 import fr.miage.bilalblaisenosal.exception.UsagerNotFoundException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -49,19 +51,48 @@ public class Usager {
     
     public static ArrayList<Usager> getAllUsager() throws SQLException {
         // TODO Sélection de tous les usagers de la base
+        ArrayList<Usager> listUsagers = new ArrayList<>();
         
-        return null;
+        String sql = "SELECT * FROM usager";
+        ResultSet results = Connector.select(sql);
+        while(results.next()) {
+            // Récupération des informations
+            String nom = results.getString("nom");
+            String prenom = results.getString("prenom");
+            String email = results.getString("email");
+            String telephone = results.getString("telephone");
+            
+            // Création d'une instance d'Usager
+            Usager usager = new Usager(nom, prenom, email, telephone);
+            listUsagers.add(usager);
+        }
+        
+        return listUsagers;
     }
     
-    public static Usager getUsagerByEmail(String email) throws SQLException, UsagerNotFoundException {
+    public static Usager getUsagerByEmail(String emailParam) throws SQLException, UsagerNotFoundException {
         // TODO Récupération d'un usager de la base
-        
-        return null;
+        String sql = "SELECT * FROM usager WHERE email='"+emailParam+"'";
+        ResultSet results = Connector.select(sql);
+        if(results.next()) {
+            // Récupération des informations
+            String nom = results.getString("nom");
+            String prenom = results.getString("prenom");
+            String email = results.getString("email");
+            String telephone = results.getString("telephone");
+            
+            // Création d'une instance d'Usager
+            Usager usager = new Usager(nom, prenom, email, telephone);
+            return usager;
+        } else {
+            throw new UsagerNotFoundException();
+        }
     }
     
     public void insert() throws SQLException {
         // TODO Insertion d'un usager dans la base de données.
-        
+        String sql = "INSERT INTO usager(nom, prenom, email, telephone) VALUES('"+this.nom+"', '"+this.prenom+"', '"+this.email+"', '"+this.telephone+"');";
+        Connector.insert(sql);
     }
     
     public void update() throws SQLException {

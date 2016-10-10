@@ -33,6 +33,7 @@ public class UsagerTest {
         try {
             usager.insert();
         } catch (SQLException e) {
+            e.printStackTrace();
             fail("Erreur de connexion à la base de données.");
         }
 
