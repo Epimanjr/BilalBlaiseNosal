@@ -1,6 +1,8 @@
 package fr.miage.bilalblaisenosal.metier;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -44,6 +46,12 @@ public class Usager {
         this.telephone = telephone;
     }
     
+    public static ArrayList<Usager> getAllUsager() throws SQLException {
+        // TODO Sélection de tous les usagers de la base
+        
+        return null;
+    }
+    
     public void insert() throws SQLException {
         // TODO Insertion d'un usager dans la base de données.
         
@@ -59,6 +67,44 @@ public class Usager {
         
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 41 * hash + Objects.hashCode(this.nom);
+        hash = 41 * hash + Objects.hashCode(this.prenom);
+        hash = 41 * hash + Objects.hashCode(this.email);
+        hash = 41 * hash + Objects.hashCode(this.telephone);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usager other = (Usager) obj;
+        if (!Objects.equals(this.nom, other.nom)) {
+            return false;
+        }
+        if (!Objects.equals(this.prenom, other.prenom)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(this.telephone, other.telephone)) {
+            return false;
+        }
+        return true;
+    }
+
+    
     public String getNom() {
         return nom;
     }
@@ -91,4 +137,5 @@ public class Usager {
         this.telephone = telephone;
     }
 
+    
 }
