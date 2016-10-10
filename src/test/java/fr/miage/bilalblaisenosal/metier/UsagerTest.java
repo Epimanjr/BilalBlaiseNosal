@@ -1,7 +1,10 @@
 package fr.miage.bilalblaisenosal.metier;
 
+import fr.miage.bilalblaisenosal.exception.UsagerNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -12,6 +15,11 @@ import static org.junit.Assert.*;
  */
 public class UsagerTest {
 
+    private final String nom = "BLAISE";
+    private final String prenom = "Maxime";
+    private final String email = "maxime.blaise1@etu.univ-lorraine.fr";
+    private final String telephone = "06 06 06 06 06";
+
     public UsagerTest() {
     }
 
@@ -21,7 +29,7 @@ public class UsagerTest {
      */
     @Test
     public void testInsert() {
-        Usager usager = new Usager("BLAISE", "Maxime", "maxime.blaise1@etu.univ-lorraine.fr", "06 06 06 06 06");
+        Usager usager = new Usager(nom, prenom, email, telephone);
         try {
             usager.insert();
         } catch (SQLException e) {
@@ -42,6 +50,24 @@ public class UsagerTest {
         } catch (SQLException ex) {
             fail("Erreur de connexion à la base de données.");
         }
+    }
 
+    @Test
+    public void testGetUsagerByEmail() {
+        try {
+            Usager usager = Usager.getUsagerByEmail(email);
+
+            assertFalse(usager == null);
+
+            // Vérification des informations
+            assertEquals(usager.getNom(), nom);
+            assertEquals(usager.getPrenom(), prenom);
+            assertEquals(usager.getEmail(), email);
+            assertEquals(usager.getTelephone(), telephone);
+        } catch (SQLException ex) {
+            fail("Erreur de connexion à la base de données.");
+        } catch (UsagerNotFoundException ex) {
+            fail("Erreur: usager non trouvé.");
+        }
     }
 }

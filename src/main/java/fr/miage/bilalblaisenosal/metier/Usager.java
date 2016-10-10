@@ -1,5 +1,6 @@
 package fr.miage.bilalblaisenosal.metier;
 
+import fr.miage.bilalblaisenosal.exception.UsagerNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -48,6 +49,12 @@ public class Usager {
     
     public static ArrayList<Usager> getAllUsager() throws SQLException {
         // TODO Sélection de tous les usagers de la base
+        
+        return null;
+    }
+    
+    public static Usager getUsagerByEmail(String email) throws SQLException, UsagerNotFoundException {
+        // TODO Récupération d'un usager de la base
         
         return null;
     }
