@@ -11,7 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mainClass>fr.miage.bilalblaisenosal.bdd.Connector</mainClass>
+        <mainClass>fr.miage.bilalblaisenosal.Usager</mainClass>
     </properties>
 
     <organization>
