@@ -48,40 +48,40 @@ public class Usager {
         this.email = email;
         this.telephone = telephone;
     }
-    
+
     public static ArrayList<Usager> getAllUsager() throws SQLException {
         // TODO Sélection de tous les usagers de la base
         ArrayList<Usager> listUsagers = new ArrayList<>();
-        
+
         String sql = "SELECT * FROM usager";
         ResultSet results = Connector.select(sql);
-        while(results.next()) {
+        while (results.next()) {
             // Récupération des informations
             String nom = results.getString("nom");
             String prenom = results.getString("prenom");
             String email = results.getString("email");
             String telephone = results.getString("telephone");
-            
+
             // Création d'une instance d'Usager
             Usager usager = new Usager(nom, prenom, email, telephone);
             listUsagers.add(usager);
         }
-        
+
         return listUsagers;
     }
-    
+
     public static Usager getUsagerByEmail(String emailParam) throws SQLException, UsagerNotFoundException {
         // TODO Récupération d'un usager de la base
-        String sql = "SELECT * FROM usager WHERE email='"+emailParam+"'";
+        String sql = "SELECT * FROM usager WHERE email='" + emailParam + "'";
         System.out.println(sql);
         ResultSet results = Connector.select(sql);
-        if(results.next()) {
+        if (results.next()) {
             // Récupération des informations
             String nom = results.getString("nom");
             String prenom = results.getString("prenom");
             String email = results.getString("email");
             String telephone = results.getString("telephone");
-            
+
             // Création d'une instance d'Usager
             Usager usager = new Usager(nom, prenom, email, telephone);
             return usager;
@@ -89,21 +89,28 @@ public class Usager {
             throw new UsagerNotFoundException();
         }
     }
-    
+
     public void insert() throws SQLException {
         // TODO Insertion d'un usager dans la base de données.
-        String sql = "INSERT INTO usager(nom, prenom, email, telephone) VALUES('"+this.nom+"', '"+this.prenom+"', '"+this.email+"', '"+this.telephone+"');";
+        String sql = "INSERT INTO usager(nom, prenom, email, telephone) VALUES('" + this.nom + "', '" + this.prenom + "', '" + this.email + "', '" + this.telephone + "');";
         Connector.insert(sql);
     }
-    
+
     public void update() throws SQLException {
         // TODO Mise à jour d'un usager dans la base de données.
-        
+        String sql = "UPDATE usager SET ";
+        sql += "nom='" + this.nom + "', ";
+        sql += "prenom='" + this.prenom + "', ";
+        sql += "telephone='" + this.telephone + "' ";
+        sql += "WHERE email='" + this.email + "'";
+        Connector.insert(sql);
     }
-    
+
     public void delete() throws SQLException {
         // TODO Suppression d'un usager dans la base de données.
-        
+        String sql = "DELETE FROM usager WHERE email='"+this.email+"'";
+        Connector.insert(sql);
+               
     }
 
     @Override
@@ -143,7 +150,6 @@ public class Usager {
         return true;
     }
 
-    
     public String getNom() {
         return nom;
     }
@@ -176,5 +182,4 @@ public class Usager {
         this.telephone = telephone;
     }
 
-    
 }

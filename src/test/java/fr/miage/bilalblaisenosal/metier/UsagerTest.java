@@ -32,7 +32,7 @@ public class UsagerTest {
      *
      */
     @Test
-    public void testInsert() {
+    public void testPersistence() {
         try {
             Connector.insert("TRUNCATE usager");
             System.out.println("Truncate OK");
@@ -62,24 +62,56 @@ public class UsagerTest {
         } catch (SQLException ex) {
             fail("Erreur de connexion à la base de données.");
         }
-    }
 
-    @Test
-    public void testGetUsagerByEmail() {
         try {
-            Usager usager = Usager.getUsagerByEmail(email);
+            Usager usager2 = Usager.getUsagerByEmail(email);
 
-            assertFalse(usager == null);
+            assertFalse(usager2 == null);
 
             // Vérification des informations
-            assertEquals(usager.getNom(), nom);
-            assertEquals(usager.getPrenom(), prenom);
-            assertEquals(usager.getEmail(), email);
-            assertEquals(usager.getTelephone(), telephone);
+            assertEquals(usager2.getNom(), nom);
+            assertEquals(usager2.getPrenom(), prenom);
+            assertEquals(usager2.getEmail(), email);
+            assertEquals(usager2.getTelephone(), telephone);
         } catch (SQLException ex) {
             fail("Erreur de connexion à la base de données.");
         } catch (UsagerNotFoundException ex) {
             fail("Erreur: usager non trouvé.");
         }
+
+        usager.setNom("NOSAL");
+        usager.setPrenom("Antoine");
+        try {
+            usager.update();
+        } catch (SQLException ex) {
+            fail("Impossible de mettre à jour l'usager");
+        }
+
+        try {
+            Usager newUsager = Usager.getUsagerByEmail(email);
+
+            assertEquals(newUsager.getNom(), "NOSAL");
+            assertEquals(newUsager.getPrenom(), "Antoine");
+            assertEquals(newUsager.getEmail(), email);
+            assertEquals(newUsager.getTelephone(), telephone);
+        } catch (SQLException | UsagerNotFoundException ex) {
+            fail("Impossible de récupérer l'usager mis à jour.");
+        }
+
+        try {
+            usager.delete();
+        } catch (SQLException ex) {
+            fail("Impossible de supprimer l'usager");
+        }
+
+        try {
+            listUsagers = Usager.getAllUsager();
+
+            // La liste doit être vide ! 
+            assertTrue(listUsagers.isEmpty());
+        } catch (SQLException e) {
+            fail("Impossible de récupérer la liste des usagers (pour vérifier suppression)");
+        }
     }
+
 }
