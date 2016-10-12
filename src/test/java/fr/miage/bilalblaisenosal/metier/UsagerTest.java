@@ -6,8 +6,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jdk.nashorn.internal.objects.annotations.Setter;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -22,11 +24,7 @@ public class UsagerTest {
     private final String telephone = "06 06 06 06 06";
 
     public UsagerTest() {
-        try {
-            Connector.insert("DELETE * FROM usager;");
-        } catch (SQLException ex) {
-            //Logger.getLogger(UsagerTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
 
     /**
@@ -35,6 +33,13 @@ public class UsagerTest {
      */
     @Test
     public void testInsert() {
+        try {
+            Connector.insert("TRUNCATE usager");
+            System.out.println("Truncate OK");
+        } catch (SQLException ex) {
+            fail("Erreur: impossible de vider la table usager");
+        }
+
         Usager usager = new Usager(nom, prenom, email, telephone);
         try {
             usager.insert();

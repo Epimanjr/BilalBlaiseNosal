@@ -73,6 +73,7 @@ public class Usager {
     public static Usager getUsagerByEmail(String emailParam) throws SQLException, UsagerNotFoundException {
         // TODO Récupération d'un usager de la base
         String sql = "SELECT * FROM usager WHERE email='"+emailParam+"'";
+        System.out.println(sql);
         ResultSet results = Connector.select(sql);
         if(results.next()) {
             // Récupération des informations
