@@ -5,6 +5,8 @@
  */
 package fr.miage.bilalblaisenosal.metier;
 
+import fr.miage.bilalblaisenosal.exception.OeuvreNotFoundException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -23,27 +25,27 @@ public class Oeuvre {
         this.editeur = editeur;
     }
     
-    public static ArrayList<Oeuvre> getAllOeuvre() {
+    public static ArrayList<Oeuvre> getAllOeuvre() throws SQLException {
         // TODO 
         
         return null;
     }
     
-    public static Oeuvre getOeuvreByISBN() {
+    public static Oeuvre getOeuvreByISBN(String ISBNParam) throws SQLException, OeuvreNotFoundException {
         // TODO 
         
         return null;
     }
     
-    public void insert() {
+    public void insert() throws SQLException {
         // TODO
     }
     
-    public void update() {
+    public void update() throws SQLException {
         // TODO
     }
     
-    public void delete() {
+    public void delete() throws SQLException {
         // TODO
     }
 
