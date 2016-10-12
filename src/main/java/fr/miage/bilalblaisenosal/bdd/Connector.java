@@ -106,6 +106,7 @@ public class Connector {
         Connection connection = Connector.getConnector().getConnection();
         if (connection != null) {
             // Connexion OK
+            System.out.println("Exécution: " + sql);
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
         }

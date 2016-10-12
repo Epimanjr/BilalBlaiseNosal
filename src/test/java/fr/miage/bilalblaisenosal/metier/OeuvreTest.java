@@ -89,8 +89,8 @@ public class OeuvreTest {
 
             // Vérification des informations
             assertEquals(newOeuvre.getISBN(), ISBN);
-            assertEquals(newOeuvre.getTitre(), titre);
-            assertEquals(newOeuvre.getEditeur(), editeur);
+            assertEquals(newOeuvre.getTitre(), "Nouveau titre");
+            assertEquals(newOeuvre.getEditeur(), "Nouvel editeur");
         } catch (SQLException | OeuvreNotFoundException ex) {
             fail("Impossible de récupérer l'oeuvre mis à jour.");
         }
