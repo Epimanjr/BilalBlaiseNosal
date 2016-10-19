@@ -166,7 +166,9 @@ public class Connector {
 
             setConnectionInformation(prop.getProperty("database"), prop.getProperty("dbuser"), prop.getProperty("dbpassword"));
         } catch (IOException ex) {
-            ex.printStackTrace();
+            // ex.printStackTrace();
+            System.out.println("Erreur de lecture du fichier .properties\nPrise en compte des valeurs par défaut. (root)");
+            setConnectionInformation("bilal", "root", "");
         } finally {
             if (input != null) {
                 try {

@@ -5,6 +5,7 @@ import fr.miage.bilalblaisenosal.exception.UsagerNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -88,6 +89,13 @@ public class Usager {
         } else {
             throw new UsagerNotFoundException();
         }
+    }
+
+    public Usager(HashMap<String, String> askedFields) {
+        this.nom = askedFields.get("nom");
+        this.prenom = askedFields.get("prenom");
+        this.email = askedFields.get("email");
+        this.telephone = askedFields.get("telephone");
     }
 
     public void insert() throws SQLException {
