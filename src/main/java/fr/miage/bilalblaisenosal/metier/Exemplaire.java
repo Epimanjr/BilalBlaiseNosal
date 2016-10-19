@@ -1,8 +1,11 @@
 package fr.miage.bilalblaisenosal.metier;
 
+import fr.miage.bilalblaisenosal.bdd.Connector;
 import fr.miage.bilalblaisenosal.exception.ObjetMetierNotFoundException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -19,14 +22,20 @@ public class Exemplaire {
     /**
      * Etat de l'exemplaire.
      */
-    private Etat etat;
+    private String etat;
 
     /**
      * ISBN de l'oeuvre associé.
      */
     private String oeuvre;
 
-    public Exemplaire(Etat etat, String oeuvre) {
+    public Exemplaire(String identifiant, String etat, String oeuvre) {
+        this.identifiant = identifiant;
+        this.etat = etat;
+        this.oeuvre = oeuvre;
+    }
+
+    public Exemplaire(String etat, String oeuvre) {
         this.etat = etat;
         this.oeuvre = oeuvre;
     }
@@ -40,7 +49,18 @@ public class Exemplaire {
      * @throws ObjetMetierNotFoundException Si objet non existant dans la base
      */
     public static Exemplaire getExemplaireById(String id) throws SQLException, ObjetMetierNotFoundException {
+        String sql = "SELECT * FROM exemplaire WHERE identifiant='" + id + "'";
+        ResultSet results = Connector.select(sql);
+        if (results.next()) {
+            // Récupération des informations
+            String identifiant = results.getString("identifiant");
+            String etat = results.getString("etat");
+            String oeuvre = results.getString("oeuvre");
 
+            // Création d'une instance de Exemplaire
+            Exemplaire exemplaire = new Exemplaire(identifiant, etat, oeuvre);
+            return exemplaire;
+        }
         return null;
     }
 
@@ -51,8 +71,23 @@ public class Exemplaire {
      * @throws SQLException Problème avec la requête ou la BDD
      */
     public static ArrayList<Exemplaire> getAllExemplaires() throws SQLException {
+        ArrayList<Exemplaire> exemplaires = new ArrayList<>();
 
-        return null;
+        String sql = "SELECT * FROM exemplaire";
+        ResultSet results = Connector.select(sql);
+        while (results.next()) {
+            // Récupération des informations
+            String identifiant = results.getString("identifiant");
+            String etat = results.getString("etat");
+            String oeuvre = results.getString("oeuvre");
+
+            // Création d'une instance de Exemplaire
+            Exemplaire exemplaire = new Exemplaire(identifiant, etat, oeuvre);
+
+            // Ajout à la liste
+            exemplaires.add(exemplaire);
+        }
+        return exemplaires;
     }
 
     /**
@@ -61,7 +96,16 @@ public class Exemplaire {
      * @throws SQLException Problème avec la requête ou la BDD
      */
     public void insert() throws SQLException {
-
+        String sql = "INSERT INTO exemplaire(etat, oeuvre) VALUES('" + this.etat + "', '" + this.oeuvre + "');";
+        Connector.insert(sql);
+        
+        String lastIdSql = "SELECT LAST_INSERT_ID() AS id FROM exemplaire";
+        ResultSet results = Connector.select(lastIdSql);
+        if(results.next()) {
+            int id = results.getInt("id");
+            System.out.println("Dernier identifiant insésé : " + id);
+            this.setIdentifiant(""+id);
+        }
     }
 
     /**
@@ -70,7 +114,11 @@ public class Exemplaire {
      * @throws SQLException Problème avec la requête ou la BDD
      */
     public void update() throws SQLException {
-
+        String sql = "UPDATE exemplaire SET ";
+        sql += "etat='" + this.etat + "', ";
+        sql += "oeuvre='" + this.oeuvre + "' ";
+        sql += "WHERE identifiant='" + this.identifiant + "';";
+        Connector.insert(sql);
     }
 
     /**
@@ -79,7 +127,41 @@ public class Exemplaire {
      * @throws SQLException Problème avec la requête ou la BDD
      */
     public void delete() throws SQLException {
+        String sql = "DELETE FROM exemplaire WHERE identifiant='" + this.identifiant + "'";
+        Connector.insert(sql);
+    }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.identifiant);
+        hash = 23 * hash + Objects.hashCode(this.etat);
+        hash = 23 * hash + Objects.hashCode(this.oeuvre);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Exemplaire other = (Exemplaire) obj;
+        if (!Objects.equals(this.identifiant, other.identifiant)) {
+            return false;
+        }
+        if (!Objects.equals(this.etat, other.etat)) {
+            return false;
+        }
+        if (!Objects.equals(this.oeuvre, other.oeuvre)) {
+            return false;
+        }
+        return true;
     }
 
     public String getIdentifiant() {
@@ -90,11 +172,11 @@ public class Exemplaire {
         this.identifiant = identifiant;
     }
 
-    public Etat getEtat() {
+    public String getEtat() {
         return etat;
     }
 
-    public void setEtat(Etat etat) {
+    public void setEtat(String etat) {
         this.etat = etat;
     }
 

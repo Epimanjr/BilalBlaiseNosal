@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 public class ExemplaireTest {
     
     // Variables pour test
-    private final Etat etat = Etat.BON;
+    private final String etat = Etat.BON.getValue();
     private final String oeuvre = "ISBN XB 22 12";
     
     public ExemplaireTest() {
@@ -73,7 +73,7 @@ public class ExemplaireTest {
             fail("Erreur: exemplaire non trouvé.");
         }
 
-        exemplaire.setEtat(Etat.ABIME);
+        exemplaire.setEtat(Etat.ABIME.getValue());
         try {
             exemplaire.update();
         } catch (SQLException ex) {
