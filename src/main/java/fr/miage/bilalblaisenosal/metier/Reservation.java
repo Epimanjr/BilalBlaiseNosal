@@ -1,7 +1,9 @@
 package fr.miage.bilalblaisenosal.metier;
 
 import fr.miage.bilalblaisenosal.bdd.Connector;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
@@ -12,17 +14,17 @@ import java.util.Objects;
  * @author Antoine NOSAL
  */
 public class Reservation {
-    
+
     /**
      * Identifiant de la réservation
      */
     private int id;
-    
+
     /**
      * Date où l'usager a effectué la demande de réservation
      */
     private Date dateDemande;
-    
+
     /**
      * Email de l'usager concerné
      */
@@ -30,23 +32,24 @@ public class Reservation {
 
     /**
      * Construit une réservation
+     *
      * @param id
      * @param dateDemande
-     * @param emailUsager 
+     * @param emailUsager
      */
     public Reservation(int id, Date dateDemande, String emailUsager) {
         this.id = id;
         this.dateDemande = dateDemande;
         this.emailUsager = emailUsager;
     }
-    
+
     public Reservation(HashMap<String, String> askedFields) {
         this.emailUsager = askedFields.get("emailUsager");
         this.dateDemande = new Date(askedFields.get("dateDemande"));
     }
-    
+
     public void insert() throws SQLException {
-        String sql = "INSERT INTO reservation(email, dateDemande) VALUES('"+ this.emailUsager +"', '" + this.dateDemande + "');";
+        String sql = "INSERT INTO reservation(email, dateDemande) VALUES('" + this.emailUsager + "', '" + this.dateDemande + "');";
         Connector.insert(sql);
     }
 
@@ -58,12 +61,30 @@ public class Reservation {
         sql += "WHERE idReservation='" + this.id + "'";
         Connector.insert(sql);
     }
-    */
-    
+     */
     public void delete() throws SQLException {
-        String sql = "DELETE FROM reservation WHERE idReservation='"+this.id+"'";
+        String sql = "DELETE FROM reservation WHERE idReservation='" + this.id + "'";
         Connector.insert(sql);
-               
+
+    }
+
+    public static ArrayList<Reservation> getAllreservation() throws SQLException {
+        ArrayList<Reservation> listreservations = new ArrayList<>();
+
+        String sql = "SELECT * FROM reservation";
+        ResultSet results = Connector.select(sql);
+        while (results.next()) {
+            // Récupération des informations
+            int id = results.getInt("idReservation");
+            String emailUsager = results.getString("emailUsager");
+            Date dateDemande = results.getDate("dateDemande");
+
+            // Création d'une instance d'une reservation
+            Reservation reservation = new Reservation(id, dateDemande, emailUsager);
+            listreservations.add(reservation);
+        }
+
+        return listreservations;
     }
 
     @Override
