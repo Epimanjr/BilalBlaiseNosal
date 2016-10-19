@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 12 Octobre 2016 à 11:44
--- Version du serveur :  10.1.16-MariaDB
--- Version de PHP :  7.0.9
+-- Généré le :  Mer 19 Octobre 2016 à 12:08
+-- Version du serveur :  10.1.13-MariaDB
+-- Version de PHP :  5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,26 +23,13 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `oeuvre`
+-- Structure de la table `reservation`
 --
 
-CREATE TABLE `oeuvre` (
-  `ISBN` varchar(20) NOT NULL,
-  `titre` varchar(20) NOT NULL,
-  `editeur` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `usager`
---
-
-CREATE TABLE `usager` (
-  `nom` varchar(50) NOT NULL,
-  `prenom` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `telephone` varchar(25) DEFAULT NULL
+CREATE TABLE `reservation` (
+  `idReservation` int(11) NOT NULL,
+  `emailUsager` varchar(100) NOT NULL,
+  `dateDemande` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -50,17 +37,20 @@ CREATE TABLE `usager` (
 --
 
 --
--- Index pour la table `oeuvre`
+-- Index pour la table `reservation`
 --
-ALTER TABLE `oeuvre`
-  ADD PRIMARY KEY (`ISBN`);
+ALTER TABLE `reservation`
+  ADD PRIMARY KEY (`idReservation`);
 
 --
--- Index pour la table `usager`
+-- AUTO_INCREMENT pour les tables exportées
 --
-ALTER TABLE `usager`
-  ADD PRIMARY KEY (`email`);
 
+--
+-- AUTO_INCREMENT pour la table `reservation`
+--
+ALTER TABLE `reservation`
+  MODIFY `idReservation` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

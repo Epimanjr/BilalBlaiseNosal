@@ -3,6 +3,7 @@ package fr.miage.bilalblaisenosal.metier;
 import fr.miage.bilalblaisenosal.bdd.Connector;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -39,7 +40,10 @@ public class Reservation {
         this.emailUsager = emailUsager;
     }
     
-    //TODO : Constructeur depuis Hashmap de fields
+    public Reservation(HashMap<String, String> askedFields) {
+        this.emailUsager = askedFields.get("emailUsager");
+        this.dateDemande = new Date(askedFields.get("dateDemande"));
+    }
     
     public void insert() throws SQLException {
         String sql = "INSERT INTO reservation(email, dateDemande) VALUES('"+ this.emailUsager +"', '" + this.dateDemande + "');";
