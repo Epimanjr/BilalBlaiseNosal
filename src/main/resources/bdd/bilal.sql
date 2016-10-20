@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 19 Octobre 2016 à 12:08
+-- Généré le :  Jeu 20 Octobre 2016 à 14:22
 -- Version du serveur :  10.1.13-MariaDB
 -- Version de PHP :  5.6.23
 
@@ -23,6 +23,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `oeuvre`
+--
+
+CREATE TABLE `oeuvre` (
+  `ISBN` varchar(20) NOT NULL,
+  `titre` varchar(20) NOT NULL,
+  `editeur` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `reservation`
 --
 
@@ -32,15 +44,40 @@ CREATE TABLE `reservation` (
   `dateDemande` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `usager`
+--
+
+CREATE TABLE `usager` (
+  `nom` varchar(50) NOT NULL,
+  `prenom` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `telephone` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Index pour les tables exportées
 --
+
+--
+-- Index pour la table `oeuvre`
+--
+ALTER TABLE `oeuvre`
+  ADD PRIMARY KEY (`ISBN`);
 
 --
 -- Index pour la table `reservation`
 --
 ALTER TABLE `reservation`
   ADD PRIMARY KEY (`idReservation`);
+
+--
+-- Index pour la table `usager`
+--
+ALTER TABLE `usager`
+  ADD PRIMARY KEY (`email`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
