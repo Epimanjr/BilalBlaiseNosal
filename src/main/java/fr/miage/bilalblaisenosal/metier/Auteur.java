@@ -1,5 +1,7 @@
 package fr.miage.bilalblaisenosal.metier;
 
+import fr.miage.bilalblaisenosal.bdd.Connector;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -44,7 +46,18 @@ public class Auteur {
      * @return Instance de l'objet Auteur
      */
     public static Auteur getAuteurById(int id) throws SQLException {
+        String sql = "SELECT * FROM auteur WHERE idAuteur='" + id + "'";
+        ResultSet results = Connector.select(sql);
+        if (results.next()) {
+            // Récupération des informations
+            int identifiant = results.getInt("idAuteur");
+            String nom = results.getString("nomAuteur");
+            String prenom = results.getString("prenomAuteur");
 
+            // Création d'une instance de Exemplaire
+            Auteur auteur = new Auteur(identifiant, nom, prenom);
+            return auteur;
+        }
         return null;
     }
 
@@ -54,8 +67,21 @@ public class Auteur {
      * @return Liste d'auteurs
      */
     public static ArrayList<Auteur> getAllAuteurs() throws SQLException {
+        ArrayList<Auteur> auteurs = new ArrayList<>();
 
-        return null;
+        String sql = "SELECT * FROM auteur";
+        ResultSet results = Connector.select(sql);
+        if (results.next()) {
+            // Récupération des informations
+            int identifiant = results.getInt("idAuteur");
+            String nom = results.getString("nomAuteur");
+            String prenom = results.getString("prenomAuteur");
+
+            // Création d'une instance de Exemplaire
+            Auteur auteur = new Auteur(identifiant, nom, prenom);
+            auteurs.add(auteur);
+        }
+        return auteurs;
     }
 
     /**
@@ -64,7 +90,16 @@ public class Auteur {
      * @throws SQLException
      */
     public void insert() throws SQLException {
+        String sql = "INSERT INTO auteur(nomAuteur, prenomAuteur) VALUES('" + this.nomAuteur + "', '" + this.prenomAuteur + "');";
+        Connector.insert(sql);
 
+        String lastIdSql = "SELECT LAST_INSERT_ID() AS id FROM auteur";
+        ResultSet results = Connector.select(lastIdSql);
+        if (results.next()) {
+            int id = results.getInt("id");
+            System.out.println("Dernier identifiant insésé : " + id);
+            this.setIdAuteur(id);
+        }
     }
 
     /**
@@ -73,7 +108,11 @@ public class Auteur {
      * @throws SQLException
      */
     public void update() throws SQLException {
-
+        String sql = "UPDATE auteur SET ";
+        sql += "nomAuteur='" + this.nomAuteur + "', ";
+        sql += "prenomAuteur='" + this.prenomAuteur + "' ";
+        sql += "WHERE idAuteur='" + this.idAuteur + "';";
+        Connector.insert(sql);
     }
 
     /**
@@ -82,7 +121,8 @@ public class Auteur {
      * @throws SQLException
      */
     public void delete() throws SQLException {
-
+        String sql = "DELETE FROM auteur WHERE idAuteur='" + this.idAuteur + "'";
+        Connector.insert(sql);
     }
 
     @Override
