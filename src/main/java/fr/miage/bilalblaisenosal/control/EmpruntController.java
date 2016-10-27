@@ -3,11 +3,14 @@ package fr.miage.bilalblaisenosal.control;
 
 import fr.miage.bilalblaisenosal.metier.Auteur;
 import fr.miage.bilalblaisenosal.metier.Emprunt;
+import fr.miage.bilalblaisenosal.metier.EtatEmprunt;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,7 +38,12 @@ public class EmpruntController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO Mettre les informations dans le ComboBOX à partir de l'enum ETAT
+        // Mettre les informations dans le ComboBOX à partir de l'enum ETAT
+        ArrayList<String> listEtatEmprunt = new ArrayList<>();
+        for(EtatEmprunt etat: EtatEmprunt.values()) {
+            listEtatEmprunt.add(etat.getValue());
+        }
+        etat.setItems(FXCollections.observableArrayList(listEtatEmprunt));
     }
     
     @FXML
