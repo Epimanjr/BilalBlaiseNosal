@@ -49,6 +49,27 @@ public class Oeuvre {
         return oeuvres;
     }
     
+    public static ArrayList<Oeuvre> getAllOeuvreByTitre(String titreParam) throws SQLException {
+        // TODO 
+        ArrayList<Oeuvre> oeuvres = new ArrayList<>();
+        
+        String sql = "SELECT * FROM oeuvre WHERE titre LIKE '%" + titreParam + "%'";
+        ResultSet results = Connector.select(sql);
+        while(results.next()) {
+            // Récupération des informations
+            String titre = results.getString("titre");
+            String editeur = results.getString("editeur");
+            String ISBN = results.getString("ISBN");
+            
+            // Création d'une instance de Oeuvre
+            Oeuvre oeuvre = new Oeuvre(ISBN, titre, editeur);
+            
+            // Ajout à la liste
+            oeuvres.add(oeuvre);
+        }
+        return oeuvres;
+    }
+    
     public static Oeuvre getOeuvreByISBN(String ISBNParam) throws SQLException, OeuvreNotFoundException {
         // TODO 
         String sql = "SELECT * FROM oeuvre WHERE ISBN='"+ISBNParam+"'";

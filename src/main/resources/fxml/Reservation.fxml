@@ -51,19 +51,32 @@
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label text="Oeuvre (id)">
+                        <Label text="Utilisez ce champ pour trier les oeuvres affichées juste en-dessous.">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Italic" size="16.0" />
                            </font>
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="tf_idoeuvre_toadd">
+                        <TextField fx:id="tf_idoeuvre_toadd" onKeyPressed="#update_cb_oeuvre">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </TextField>
+                        <Label text="Sélectionner une oeuvre">
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cb_oeuvre_toadd" prefHeight="25.0" prefWidth="1240.0">
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </ComboBox>
                         <Button fx:id="bt_ajouter" mnemonicParsing="false" onAction="#addReservation" prefHeight="25.0" prefWidth="1240.0" text="Ajouter">
                            <VBox.margin>
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
