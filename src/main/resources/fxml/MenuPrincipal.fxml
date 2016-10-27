@@ -17,7 +17,7 @@
          <children>
             <Pane prefHeight="200.0" prefWidth="1280.0">
                <children>
-                  <Label layoutX="306.0" layoutY="93.0" text="Application de gestion d'une bibliothèque">
+                  <Label layoutX="312.0" layoutY="94.0" text="Application de gestion de la bibliothèque">
                      <font>
                         <Font size="36.0" />
                      </font>

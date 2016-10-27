@@ -38,7 +38,7 @@
                               <Insets left="20.0" />
                            </VBox.margin>
                         </Label>
-                        <Button fx:id="bt_newOeuvre" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="1250.0" text="Ajouter une nouvelle oeuvre" textAlignment="CENTER">
+                        <Button fx:id="bt_newOeuvre" alignment="CENTER" mnemonicParsing="false" onAction="#launch_oeuvre" prefHeight="40.0" prefWidth="1250.0" text="Ajouter une nouvelle oeuvre" textAlignment="CENTER">
                            <VBox.margin>
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
