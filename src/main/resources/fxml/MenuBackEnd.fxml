@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.miage.bilalblaisenosal.control.MenuBackEndController">
+    <stylesheets>
+        <URL value="@/styles/Styles.css" />
+    </stylesheets>
+   <children>
+      <VBox prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <Pane prefHeight="130.0" prefWidth="1280.0">
+               <children>
+                  <Label layoutX="403.0" layoutY="53.0" text="Administration de la bibliothèque">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="14.0" text="(c) Maxime BLAISE &amp; Antoine NOSAL, 2016/2017." />
+               </children>
+            </Pane>
+            <Pane prefHeight="570.0" prefWidth="1280.0">
+               <children>
+                  <VBox prefHeight="570.0" prefWidth="1280.0">
+                     <children>
+                        <Label text="[OEUVRE]">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Button fx:id="bt_newOeuvre" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="1250.0" text="Ajouter une nouvelle oeuvre" textAlignment="CENTER">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Italic" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="bt_deleteOeuvre" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="1250.0" text="Supprimer une oeuvre existante" textAlignment="CENTER">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Italic" size="14.0" />
+                           </font>
+                        </Button>
+                        <Label text="[EXEMPLAIRE]">
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="bt_newExemplaire" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="1250.0" text="Ajouter un/des exemplaire(s)" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Italic" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="bt_updateExemplaire" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="1250.0" text="Modifier un exemplaire existant" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Italic" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="bt_deleteExemplaire" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="1250.0" text="Supprimer un/des exemplaire(s)" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Italic" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Label text="[USAGER]">
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="bt_newUsager" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="1250.0" text="Ajouter un nouvel usager" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Italic" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="bt_updateUsager" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="1250.0" text="Modifier un usager existant" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Italic" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="bt_deleteUsager" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="1250.0" text="Supprimer un usager existant" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Italic" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
