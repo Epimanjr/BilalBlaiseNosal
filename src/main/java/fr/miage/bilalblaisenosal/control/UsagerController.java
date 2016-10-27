@@ -43,6 +43,21 @@ public class UsagerController implements Initializable {
     @FXML
     private Label lb_delete_message;
 
+    @FXML
+    private TextField tf_email_toupdate;
+
+    @FXML
+    private TextField tf_nom_toupdate;
+
+    @FXML
+    private TextField tf_prenom_toupdate;
+
+    @FXML
+    private TextField tf_telephone_toupdate;
+    
+    @FXML
+    private Label lb_update_message;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
@@ -67,6 +82,47 @@ public class UsagerController implements Initializable {
             Logger.getLogger(OeuvreController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    @FXML
+    private void searchUsager(ActionEvent event) {
+        // Récupération des informations de l'interface
+        String strEmail = tf_email_toupdate.getText();
+
+        try {
+            // Recherche de l'oeuvre concerné
+            Usager usager = Usager.getUsagerByEmail(strEmail);
+            tf_nom_toupdate.setText(usager.getNom());
+            tf_prenom_toupdate.setText(usager.getPrenom());
+            tf_telephone_toupdate.setText(usager.getTelephone());
+            lb_update_message.setText("L'usager a été chargé. Vous pouvez modifier les champs et cliquer sur \"Modifier\".");
+        } catch (SQLException | UsagerNotFoundException ex) {
+            lb_update_message.setText("Aucun usager n'a été trouvé dans la base.");
+            Logger.getLogger(OeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    
+    @FXML
+    private void updateUsager(ActionEvent event) {
+        // Récupération des informations de l'interface
+        String strEmail = tf_email_toupdate.getText();
+        String strNom = tf_nom_toupdate.getText();
+        String strPrenom = tf_prenom_toupdate.getText();
+        String strTel = tf_telephone_toupdate.getText();
+
+        try {
+            // Recherche de l'oeuvre concerné
+            Usager usager = Usager.getUsagerByEmail(strEmail);
+            usager.setEmail(strEmail);
+            usager.setNom(strNom);
+            usager.setPrenom(strPrenom);
+            usager.setTelephone(strTel);
+            usager.update();
+            lb_update_message.setText("L'usager a été modifié dans la base.");
+        } catch (SQLException | UsagerNotFoundException ex) {
+            lb_update_message.setText("Un problème est survenu durant la modification dans la base.");
+            Logger.getLogger(OeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
 
     @FXML
     private void deleteUsager(ActionEvent event) {

@@ -59,4 +59,9 @@ public class MenuBackEndController implements Initializable {
         this.launch("Usager", "Gestion des usagers");
     }
     
+    @FXML
+    private void launch_usager_suite(ActionEvent event) throws Exception {
+        this.launch("Usager_suite", "Gestion des usagers");
+    }
+    
 }
