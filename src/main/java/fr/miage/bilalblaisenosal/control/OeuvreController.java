@@ -20,13 +20,13 @@ import javafx.scene.control.TextField;
 public class OeuvreController implements Initializable {
 
     @FXML
-    private TextField isbn;
+    private TextField tf_isbn;
     
     @FXML
-    private TextField titre;
+    private TextField tf_titre;
     
     @FXML
-    private TextField editeur;
+    private TextField tf_editeur;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -36,9 +36,9 @@ public class OeuvreController implements Initializable {
     @FXML
     private void ajouterOeuvre(ActionEvent event) {
         // Récupération des informations de l'interface
-        String strIsbn = isbn.getText();
-        String strTitre = titre.getText();
-        String strEditeur = editeur.getText();
+        String strIsbn = tf_isbn.getText();
+        String strTitre = tf_titre.getText();
+        String strEditeur = tf_editeur.getText();
         
         // Construction d'une oeuvre
         Oeuvre oeuvre = new Oeuvre(strIsbn, strTitre, strEditeur);
