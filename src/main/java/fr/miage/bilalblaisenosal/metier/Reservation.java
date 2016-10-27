@@ -23,7 +23,7 @@ public class Reservation {
     /**
      * Date où l'usager a effectué la demande de réservation
      */
-    private Date dateDemande;
+    private String dateDemande;
 
     /**
      * Email de l'usager concerné
@@ -31,26 +31,38 @@ public class Reservation {
     private String emailUsager;
 
     /**
+     * Identifiant de l'oeuvre réservée
+     */
+    private int idOeuvre;
+    
+    /**
      * Construit une réservation
      *
-     * @param id
      * @param dateDemande
      * @param emailUsager
      */
-    public Reservation(int id, Date dateDemande, String emailUsager) {
-        this.id = id;
+    public Reservation(String dateDemande, String emailUsager, int idOeuvre) {
         this.dateDemande = dateDemande;
         this.emailUsager = emailUsager;
+        this.idOeuvre = idOeuvre;
     }
 
     public Reservation(HashMap<String, String> askedFields) {
         this.emailUsager = askedFields.get("emailUsager");
-        this.dateDemande = new Date(askedFields.get("dateDemande"));
+        this.dateDemande = askedFields.get("dateDemande");
+        this.idOeuvre = Integer.parseInt(askedFields.get("idOeuvre"));
     }
 
     public void insert() throws SQLException {
-        String sql = "INSERT INTO reservation(email, dateDemande) VALUES('" + this.emailUsager + "', '" + this.dateDemande + "');";
+        String sql = "INSERT INTO reservation(emailUsager, dateDemande, idOeuvre) VALUES('" + this.emailUsager + "', '" + this.dateDemande + "', '" + this.idOeuvre + "');";
         Connector.insert(sql);
+        
+        String lastIdSql = "SELECT LAST_INSERT_ID() AS id FROM reservation";
+        ResultSet results = Connector.select(lastIdSql);
+        if (results.next()) {
+            int id = results.getInt("id");
+            this.setId(id);
+        }
     }
 
     /*
@@ -68,7 +80,7 @@ public class Reservation {
 
     }
 
-    public static ArrayList<Reservation> getAllreservation() throws SQLException {
+    public static ArrayList<Reservation> getAllReservations() throws SQLException {
         ArrayList<Reservation> listreservations = new ArrayList<>();
 
         String sql = "SELECT * FROM reservation";
@@ -77,10 +89,12 @@ public class Reservation {
             // Récupération des informations
             int id = results.getInt("idReservation");
             String emailUsager = results.getString("emailUsager");
-            Date dateDemande = results.getDate("dateDemande");
+            String dateDemande = results.getString("dateDemande");
+            int idOeuvre = results.getInt("idOeuvre");
 
             // Création d'une instance d'une reservation
-            Reservation reservation = new Reservation(id, dateDemande, emailUsager);
+            Reservation reservation = new Reservation(dateDemande, emailUsager, idOeuvre);
+            reservation.setId(id);
             listreservations.add(reservation);
         }
 
@@ -90,9 +104,6 @@ public class Reservation {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + this.id;
-        hash = 23 * hash + Objects.hashCode(this.dateDemande);
-        hash = 23 * hash + Objects.hashCode(this.emailUsager);
         return hash;
     }
 
@@ -111,10 +122,13 @@ public class Reservation {
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.emailUsager, other.emailUsager)) {
+        if (this.idOeuvre != other.idOeuvre) {
             return false;
         }
         if (!Objects.equals(this.dateDemande, other.dateDemande)) {
+            return false;
+        }
+        if (!Objects.equals(this.emailUsager, other.emailUsager)) {
             return false;
         }
         return true;
@@ -128,11 +142,11 @@ public class Reservation {
         this.id = id;
     }
 
-    public Date getDateDemande() {
+    public String getDateDemande() {
         return dateDemande;
     }
 
-    public void setDateDemande(Date dateDemande) {
+    public void setDateDemande(String dateDemande) {
         this.dateDemande = dateDemande;
     }
 
@@ -142,6 +156,14 @@ public class Reservation {
 
     public void setEmailUsager(String emailUsager) {
         this.emailUsager = emailUsager;
+    }
+
+    public int getIdOeuvre() {
+        return idOeuvre;
+    }
+
+    public void setIdOeuvre(int idOeuvre) {
+        this.idOeuvre = idOeuvre;
     }
 
 }
