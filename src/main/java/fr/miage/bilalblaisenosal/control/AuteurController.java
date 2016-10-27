@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
  * @author Maxime BLAISE
  * @author Antoine NOSAL
  */
-public class UsagerController implements Initializable{
+public class AuteurController implements Initializable{
     
     @FXML
     private TextField nomAuteur;
