@@ -31,17 +31,23 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private void launch_frontend(ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/MenuFrontEnd.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
+        Parent root = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
-        /*stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initStyle(StageStyle.UNDECORATED);*/
         stage.setTitle("BibalBlaiseNosal - FrontEnd");
-        stage.setScene(new Scene(root1));
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
         stage.show();
     }
 
     @FXML
-    private void launch_backend(ActionEvent event) {
+    private void launch_backend(ActionEvent event) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/MenuBackEnd.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("BibalBlaiseNosal - BackEnd");
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.show();
     }
 
 }

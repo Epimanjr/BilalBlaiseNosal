@@ -19,6 +19,7 @@ public class MenuPrincipal extends Application {
         
         stage.setTitle("BibalBlaiseNosal");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
