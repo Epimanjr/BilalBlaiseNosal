@@ -38,7 +38,7 @@
                               <Insets left="20.0" />
                            </VBox.margin>
                         </Label>
-                        <Button fx:id="bt_newReservation" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="1250.0" text="Enregistrer une nouvelle réservation" textAlignment="CENTER">
+                        <Button fx:id="bt_newReservation" alignment="CENTER" mnemonicParsing="false" onAction="#launch_reservation" prefHeight="40.0" prefWidth="1250.0" text="Enregistrer une nouvelle réservation" textAlignment="CENTER">
                            <VBox.margin>
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
@@ -46,7 +46,7 @@
                               <Font name="System Italic" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="bt_deleteReservation" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="1250.0" text="Annuler une réservation existante" textAlignment="CENTER">
+                        <Button fx:id="bt_deleteReservation" alignment="CENTER" mnemonicParsing="false" onAction="#launch_reservation" prefHeight="40.0" prefWidth="1250.0" text="Annuler une réservation existante" textAlignment="CENTER">
                            <VBox.margin>
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
@@ -62,7 +62,7 @@
                               <Insets left="20.0" />
                            </VBox.margin>
                         </Label>
-                        <Button fx:id="bt_newEmprunt" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="1250.0" text="Enregistrer un nouvel emprunt" textAlignment="CENTER">
+                        <Button fx:id="bt_newEmprunt" alignment="CENTER" mnemonicParsing="false" onAction="#launch_emprunt" prefHeight="40.0" prefWidth="1250.0" text="Enregistrer un nouvel emprunt" textAlignment="CENTER">
                            <font>
                               <Font name="System Italic" size="14.0" />
                            </font>
@@ -70,7 +70,7 @@
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="bt_endEmprunt" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="1250.0" text="Enregistrer un nouveau rendu d'emprunt" textAlignment="CENTER">
+                        <Button fx:id="bt_endEmprunt" alignment="CENTER" mnemonicParsing="false" onAction="#launch_emprunt" prefHeight="40.0" prefWidth="1250.0" text="Enregistrer un nouveau rendu d'emprunt" textAlignment="CENTER">
                            <font>
                               <Font name="System Italic" size="14.0" />
                            </font>
