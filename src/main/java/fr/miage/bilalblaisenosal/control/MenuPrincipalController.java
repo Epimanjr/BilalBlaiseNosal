@@ -30,7 +30,7 @@ public class MenuPrincipalController implements Initializable {
 
     @FXML
     private void launch_frontend(ActionEvent event) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Oeuvre.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/MenuFrontEnd.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         /*stage.initModality(Modality.APPLICATION_MODAL);
