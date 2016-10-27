@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="fr.miage.bilalblaisenosal.control.MenuPrincipalController">
+    <stylesheets>
+        <URL value="@/styles/Styles.css" />
+    </stylesheets>
+   <children>
+      <VBox prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <Pane prefHeight="200.0" prefWidth="1280.0">
+               <children>
+                  <Label layoutX="306.0" layoutY="93.0" text="Application de gestion d'une bibliothèque">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1244.0" layoutY="14.0" text="v1.0" />
+                  <Label layoutX="14.0" layoutY="14.0" text="(c) Maxime BLAISE &amp; Antoine NOSAL, 2016/2017." />
+               </children>
+            </Pane>
+            <HBox prefHeight="482.0" prefWidth="1280.0">
+               <children>
+                  <Pane prefHeight="481.0" prefWidth="640.0">
+                     <children>
+                        <Button fx:id="bt_frontend" layoutX="189.0" layoutY="14.0" mnemonicParsing="false" onAction="#launch_frontend" prefHeight="440.0" prefWidth="440.0" text="Gestion courante">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="481.0" prefWidth="640.0">
+                     <children>
+                        <Button fx:id="bt_backend" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#launch_backend" prefHeight="440.0" prefWidth="440.0" text="Administration">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
