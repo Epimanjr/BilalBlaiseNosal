@@ -6,16 +6,21 @@
 package fr.miage.bilalblaisenosal.control;
 
 import fr.miage.bilalblaisenosal.exception.ObjetMetierNotFoundException;
+import fr.miage.bilalblaisenosal.metier.Etat;
 import fr.miage.bilalblaisenosal.metier.Exemplaire;
 import fr.miage.bilalblaisenosal.metier.Exemplaire;
+import fr.miage.bilalblaisenosal.metier.Oeuvre;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 /**
@@ -26,20 +31,35 @@ import javafx.scene.control.TextField;
 public class ExemplaireController implements Initializable {
 
     @FXML
-    private TextField etat;
+    private ComboBox<String> cb_etat_toadd;
     
     @FXML
-    private TextField isbn;
+    private ComboBox<Oeuvre> cb_isbn_toadd;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Mettre les états 
+        ArrayList<String> etats = new ArrayList<>();
+        for(Etat etat: Etat.values()) {
+            etats.add(etat.getValue());
+        }
+        cb_etat_toadd.setItems(FXCollections.observableArrayList(etats));
+        
+        try {
+            // Mettre les oeuvres disponibles dans le ComboBox<Oeuvre>
+            ArrayList<Oeuvre> oeuvres = Oeuvre.getAllOeuvre();
+            cb_isbn_toadd.setItems(FXCollections.observableArrayList(oeuvres));
+        } catch (SQLException ex) {
+            // TODO Affichage d'un message d'erreur dans l'interface
+            Logger.getLogger(ExemplaireController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @FXML
-    private void ajouterExemplaire(ActionEvent event) {
+    private void addExemplaire(ActionEvent event) {
         // Récupération des informations de l'interface
-        String strEtat = etat.getText();
-        String strIsbn = isbn.getText();
+        String strEtat = cb_etat_toadd.getSelectionModel().getSelectedItem().toString();
+        String strIsbn = cb_isbn_toadd.getSelectionModel().getSelectedItem().getISBN();
         
         // Construction d'un exemplaire
         Exemplaire exemplaire = new Exemplaire(strEtat, strIsbn);
@@ -53,7 +73,7 @@ public class ExemplaireController implements Initializable {
         }
     }
     
-    @FXML
+   /* @FXML
     private void modifierExemplaire(ActionEvent event) {
         // Récupération des informations de l'interface
         String idExemplaire = "";
@@ -88,5 +108,5 @@ public class ExemplaireController implements Initializable {
             Logger.getLogger(ExemplaireController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }
+    }*/
 }

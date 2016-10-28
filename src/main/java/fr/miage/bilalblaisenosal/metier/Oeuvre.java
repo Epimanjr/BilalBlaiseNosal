@@ -162,6 +162,11 @@ public class Oeuvre {
     public void setEditeur(String editeur) {
         this.editeur = editeur;
     }
+
+    @Override
+    public String toString() {
+        return "Oeuvre{" + "ISBN=" + ISBN + '}';
+    }
     
     
 }

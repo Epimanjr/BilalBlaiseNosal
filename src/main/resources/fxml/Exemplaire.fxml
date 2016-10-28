@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.miage.bilalblaisenosal.control.EmpruntController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.miage.bilalblaisenosal.control.ExemplaireController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
@@ -18,7 +18,7 @@
          <children>
             <Pane prefHeight="130.0" prefWidth="800.0">
                <children>
-                  <Label layoutX="255.0" layoutY="52.0" text="Gestion des emprunts">
+                  <Label layoutX="255.0" layoutY="52.0" text="Gestion des exemplaires">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -38,7 +38,7 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <Label text="Adresse e-mail de l'emprunteur">
+                        <Label text="Etat de l'exemplaire">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
@@ -46,12 +46,12 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tf_email_toadd">
+                        <ComboBox fx:id="cb_etat_toadd" prefHeight="25.0" prefWidth="765.0">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
-                        </TextField>
-                        <Label text="Utilisez ce champ pour trier les exemplaires affichés juste en-dessous.">
+                        </ComboBox>
+                        <Label text="Utilisez ce champ pour trier les oeuvres affichés juste en-dessous.">
                            <font>
                               <Font name="System Italic" size="16.0" />
                            </font>
@@ -59,12 +59,12 @@
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="tf_idexemplaire_toadd">
+                        <TextField fx:id="tf_isbn_toadd">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label text="Sélectionner un exemplaire">
+                        <Label text="Sélectionner une oeuvre">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
@@ -72,12 +72,12 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="cb_exemplaire_toadd" prefHeight="25.0" prefWidth="1240.0">
+                        <ComboBox fx:id="cb_isbn_toadd" prefHeight="25.0" prefWidth="1240.0">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </ComboBox>
-                        <Button fx:id="bt_ajouter" mnemonicParsing="false" onAction="#addEmprunt" prefHeight="25.0" prefWidth="1240.0" text="Enregistrer l'emprunt">
+                        <Button fx:id="bt_ajouter" mnemonicParsing="false" onAction="#addExemplaire" prefHeight="25.0" prefWidth="1240.0" text="Enregistrer l'exemplaire">
                            <VBox.margin>
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
