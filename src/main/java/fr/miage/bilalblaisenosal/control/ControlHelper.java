@@ -1,5 +1,9 @@
 package fr.miage.bilalblaisenosal.control;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 /**
  *
  * @author Maxime BLAISE
@@ -8,6 +12,17 @@ package fr.miage.bilalblaisenosal.control;
 public class ControlHelper {
 
     private static final int STRING_SIZE_LIMIT = 20;
+
+    /**
+     * Permet de récupérer la date courante.
+     *
+     * @return Chaîne de caractères qui contient la date
+     */
+    public static String getCurrentDate() {
+        Date currentDate = new GregorianCalendar().getTime();
+        String dateCourante = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(currentDate);
+        return dateCourante;
+    }
 
     /**
      * Vérifie un attribut classique de type String (nom, prénom, etc.)

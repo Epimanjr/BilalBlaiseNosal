@@ -1,9 +1,9 @@
 
 package fr.miage.bilalblaisenosal.control;
 
-import fr.miage.bilalblaisenosal.metier.Auteur;
 import fr.miage.bilalblaisenosal.metier.Emprunt;
 import fr.miage.bilalblaisenosal.metier.EtatEmprunt;
+import fr.miage.bilalblaisenosal.metier.Exemplaire;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -25,37 +25,42 @@ import javafx.scene.control.TextField;
 public class EmpruntController implements Initializable{
     
     @FXML
-    private TextField dateDebut;
+    private ComboBox<Exemplaire> cb_exemplaire_toadd;
     
     @FXML
-    private ComboBox<String> etat;
+    private TextField tf_email_toadd;
     
     @FXML
-    private TextField emailUsager;
-    
-    @FXML
-    private TextField identifiantExemplaire;
+    private TextField tf_idexemplaire_toadd;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Mettre les informations dans le ComboBOX à partir de l'enum ETAT
-        ArrayList<String> listEtatEmprunt = new ArrayList<>();
-        for(EtatEmprunt etat: EtatEmprunt.values()) {
-            listEtatEmprunt.add(etat.getValue());
+        try {
+            // Mettre les informations dans le ComboBOX à partir de l'enum ETAT
+            /*ArrayList<String> listEtatEmprunt = new ArrayList<>();
+            for(EtatEmprunt etatTmp: EtatEmprunt.values()) {
+            listEtatEmprunt.add(etatTmp.getValue());
+            }
+            etat.setItems(FXCollections.observableArrayList(listEtatEmprunt));*/
+            
+            // Mettre la liste des exemplaires dans le ComboBox<Exemplaire>
+            ArrayList<Exemplaire> listExemplaires = Exemplaire.getAllExemplaires();
+            cb_exemplaire_toadd.setItems(FXCollections.observableArrayList(listExemplaires));
+        } catch (SQLException ex) {
+            // TODO Afficher message dans interface
+            Logger.getLogger(EmpruntController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        etat.setItems(FXCollections.observableArrayList(listEtatEmprunt));
     }
     
     @FXML
-    private void ajouterEmprunt(ActionEvent event) {
+    private void addEmprunt(ActionEvent event) {
         // Récupération des informations de l'interface
-        String strDateDebut = dateDebut.getText();
-        String strEtat = etat.getSelectionModel().getSelectedItem();
-        String strEmailUsager = emailUsager.getText();
-        String strIdentifiantExemplaire = identifiantExemplaire.getText();
+        String strEtat = EtatEmprunt.ENCOURS.getValue();
+        String strEmailUsager = tf_email_toadd.getText();
+        String strIdentifiantExemplaire = cb_exemplaire_toadd.getSelectionModel().getSelectedItem().getIdentifiant();
         
         // Construction d'un emprunt
-        Emprunt emprunt = new Emprunt(strDateDebut, strEtat, strEmailUsager, strIdentifiantExemplaire);
+        Emprunt emprunt = new Emprunt(ControlHelper.getCurrentDate(), strEtat, strEmailUsager, strIdentifiantExemplaire);
         
         try {
             // Insertion dans la base de données
@@ -65,44 +70,5 @@ public class EmpruntController implements Initializable{
             Logger.getLogger(OeuvreController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    @FXML
-    private void modifierEmprunt(ActionEvent event) {
-        // Récupération des informations de l'interface
-        String strDateDebut = dateDebut.getText();
-        String strEtat = etat.getSelectionModel().getSelectedItem();
-        String strEmailUsager = emailUsager.getText();
-        String strIdentifiantExemplaire = identifiantExemplaire.getText();
-        
-        // Construction de l'emprunt concerné par la MAJ
-        Emprunt emprunt = new Emprunt(strDateDebut, strEtat, strEmailUsager, strIdentifiantExemplaire);
-        
-        try {
-            // Insertion dans la base de données
-            emprunt.update();
-        } catch (SQLException ex) {
-            // Affichage d'un message d'erreur dans l'interface ? 
-            Logger.getLogger(OeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    @FXML
-    private void supprimerEmprunt(ActionEvent event) {
-        // Récupération des informations de l'interface
-        String strDateDebut = dateDebut.getText();
-        String strEtat = etat.getSelectionModel().getSelectedItem();
-        String strEmailUsager = emailUsager.getText();
-        String strIdentifiantExemplaire = identifiantExemplaire.getText();
-        
-        // Construction de l'emprunt concerné par la MAJ
-        Emprunt emprunt = new Emprunt(strDateDebut, strEtat, strEmailUsager, strIdentifiantExemplaire);
-        
-        try {
-            // Insertion dans la base de données
-            emprunt.delete();
-        } catch (SQLException ex) {
-            // Affichage d'un message d'erreur dans l'interface ? 
-            Logger.getLogger(OeuvreController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+
 }
