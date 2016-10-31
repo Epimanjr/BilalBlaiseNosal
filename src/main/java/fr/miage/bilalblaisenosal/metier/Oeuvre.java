@@ -165,7 +165,7 @@ public class Oeuvre {
 
     @Override
     public String toString() {
-        return "Oeuvre{" + "ISBN=" + ISBN + '}';
+        return "" + ISBN + " - " + this.titre + " (par" + this.editeur + ")";
     }
     
     

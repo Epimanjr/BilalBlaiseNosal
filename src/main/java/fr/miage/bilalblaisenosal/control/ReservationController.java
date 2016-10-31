@@ -36,20 +36,18 @@ public class ReservationController implements Initializable {
     private TextField tf_idoeuvre_toadd;
     
     @FXML
-    private ComboBox<String> cb_oeuvre_toadd;
+    private ComboBox<Oeuvre> cb_oeuvre_toadd;
     
     @FXML
     private Label lb_add_message;
     
+    private ArrayList<Oeuvre> listOeuvres = new ArrayList<>();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            ArrayList<Oeuvre> listOeuvres = Oeuvre.getAllOeuvre();
-            ArrayList<String> listOeuvresAsString = new ArrayList<>();
-            for(Oeuvre oeuvre : listOeuvres) {
-                listOeuvresAsString.add(oeuvre.getISBN() + " - " + oeuvre.getTitre() + " - " + oeuvre.getEditeur());
-            }
-            cb_oeuvre_toadd.setItems(FXCollections.observableArrayList(listOeuvresAsString));
+            listOeuvres = Oeuvre.getAllOeuvre();
+            cb_oeuvre_toadd.setItems(FXCollections.observableArrayList(listOeuvres));
         } catch (SQLException ex) {
             lb_add_message.setText("Problème dans le chargement des oeuvres de la base.");
         }
@@ -59,12 +57,8 @@ public class ReservationController implements Initializable {
     private void update_cb_oeuvre(KeyEvent event) {
         String strTitreRecherche = tf_idoeuvre_toadd.getText();
         try {
-            ArrayList<Oeuvre> listOeuvres = Oeuvre.getAllOeuvreByTitre(strTitreRecherche);
-            ArrayList<String> listOeuvresAsString = new ArrayList<>();
-            for(Oeuvre oeuvre : listOeuvres) {
-                listOeuvresAsString.add(oeuvre.getISBN() + " - " + oeuvre.getTitre() + " - " + oeuvre.getEditeur());
-            }
-            cb_oeuvre_toadd.setItems(FXCollections.observableArrayList(listOeuvresAsString));
+            listOeuvres = Oeuvre.getAllOeuvreByTitre(strTitreRecherche);
+            cb_oeuvre_toadd.setItems(FXCollections.observableArrayList(listOeuvres));
         } catch (SQLException ex) {
             lb_add_message.setText("Problème dans le chargement des oeuvres de la base.");
         }

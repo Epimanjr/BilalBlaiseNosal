@@ -34,6 +34,12 @@ public class MenuFrontEndController implements Initializable {
         // TODO
     }   
     
+    /**
+     * Permet de lancer une fenêtre spécifique
+     * @param fxmlName Nom du fichier FXML associé
+     * @param windowName Nom de la fenêtre qui sera ouverte
+     * @throws Exception 
+     */
     private void launch(String fxmlName, String windowName) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXML_FOLDER + fxmlName + ".fxml"));
         Parent root = (Parent) fxmlLoader.load();
