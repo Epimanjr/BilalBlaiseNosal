@@ -79,7 +79,7 @@ CREATE TABLE `reservation` (
   `idReservation` int(11) NOT NULL,
   `emailUsager` varchar(100) NOT NULL,
   `dateDemande` date NOT NULL,
-  `idOeuvre` int(11) NOT NULL
+  `idOeuvre` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
