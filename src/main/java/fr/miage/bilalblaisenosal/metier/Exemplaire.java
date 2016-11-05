@@ -188,4 +188,8 @@ public class Exemplaire {
         this.oeuvre = oeuvre;
     }
 
+    @Override
+    public String toString() {
+        return "Exemplaire{" + "identifiant=" + identifiant + ", etat=" + etat + ", oeuvre=" + oeuvre + '}';
+    }
 }
