@@ -25,13 +25,21 @@ public class FilterHelper<K> {
     }
     
     public ArrayList<K> getWithFilter() {
+        ArrayList<K> res = new ArrayList<K>();
         
-        return null;
+        // Loop
+        for(K tmp: this.listAll) {
+            if(tmp.toString().toLowerCase().contains(this.filter)) {
+                res.add(tmp);
+            }
+        }
+        
+        return res;
     }
     
     public ArrayList<K> getWithFilter(String filterParam) {
-        
-        return null;
+        this.setFilter(filterParam);
+        return this.getWithFilter();
     }
 
     /* GETTER AND SETTER */
