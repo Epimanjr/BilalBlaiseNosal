@@ -114,7 +114,20 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <Label text="TODO">
+                        <Label text="Utilisez ce champ pour trier les réservations affichées juste en-dessous.">
+                           <font>
+                              <Font name="System Italic" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="tf_resa_todelete">
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Sélectionner une réservation">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -122,12 +135,12 @@
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="tf_isbn_todelete">
+                        <ComboBox fx:id="cb_resa_todelete" prefHeight="25.0" prefWidth="1240.0">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
-                        </TextField>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="1240.0" text="Supprimer">
+                        </ComboBox>
+                        <Button fx:id="bt_delete" mnemonicParsing="false" prefHeight="25.0" prefWidth="1240.0" text="Supprimer">
                            <font>
                               <Font size="16.0" />
                            </font>

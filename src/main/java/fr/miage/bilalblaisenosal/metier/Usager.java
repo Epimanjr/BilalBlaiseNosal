@@ -190,4 +190,11 @@ public class Usager {
         this.telephone = telephone;
     }
 
+    @Override
+    public String toString() {
+        return "" + nom + " " + prenom + " (" + email + " - " + telephone + ")";
+    }
+
+    
+    
 }
