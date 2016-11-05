@@ -20,7 +20,7 @@ public class ReservationTest {
     // Variables pour test
     private final String datePattern = "yyyy-MM-dd";
     private final String emailUsager = "antoine.nosal@outlook.fr";
-    private final int idOeuvre = 2212;
+    private final String idOeuvre = "XB2212";
 
     public ReservationTest() {
     }

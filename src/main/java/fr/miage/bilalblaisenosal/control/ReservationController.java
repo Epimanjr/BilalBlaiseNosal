@@ -3,6 +3,7 @@ package fr.miage.bilalblaisenosal.control;
 import fr.miage.bilalblaisenosal.exception.OeuvreNotFoundException;
 import fr.miage.bilalblaisenosal.metier.Oeuvre;
 import fr.miage.bilalblaisenosal.metier.Reservation;
+import fr.miage.bilalblaisenosal.metier.Usager;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -30,51 +31,64 @@ import javafx.scene.input.KeyEvent;
 public class ReservationController implements Initializable {
 
     @FXML
-    private TextField tf_email_toadd;
-    
+    private TextField tf_filteremail_toadd;
+
     @FXML
-    private TextField tf_idoeuvre_toadd;
-    
+    private ComboBox<Usager> cb_usager_toadd;
+
+    @FXML
+    private TextField tf_filteroeuvre_toadd;
+
     @FXML
     private ComboBox<Oeuvre> cb_oeuvre_toadd;
-    
+
     @FXML
     private Label lb_add_message;
-    
-    private ArrayList<Oeuvre> listOeuvres = new ArrayList<>();
-    
+
+    private ArrayList<Oeuvre> listeOeuvres = new ArrayList<>();
+    private ArrayList<Usager> listeUsagers = new ArrayList<>();
+    private FilterHelper<Oeuvre> filterHelperOeuvres;
+    private FilterHelper<Usager> filterHelperUsagers;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            listOeuvres = Oeuvre.getAllOeuvre();
-            cb_oeuvre_toadd.setItems(FXCollections.observableArrayList(listOeuvres));
-        } catch (SQLException ex) {
-            lb_add_message.setText("Problème dans le chargement des oeuvres de la base.");
-        }
-    }
-    
-    @FXML
-    private void update_cb_oeuvre(KeyEvent event) {
-        String strTitreRecherche = tf_idoeuvre_toadd.getText();
-        try {
-            listOeuvres = Oeuvre.getAllOeuvreByTitre(strTitreRecherche);
-            cb_oeuvre_toadd.setItems(FXCollections.observableArrayList(listOeuvres));
+            listeOeuvres = Oeuvre.getAllOeuvre();
+            cb_oeuvre_toadd.setItems(FXCollections.observableArrayList(listeOeuvres));
+            filterHelperOeuvres = new FilterHelper<>("", listeOeuvres);
+            listeUsagers = Usager.getAllUsager();
+            cb_usager_toadd.setItems(FXCollections.observableArrayList(listeUsagers));
+            filterHelperUsagers = new FilterHelper<>("", listeUsagers);
         } catch (SQLException ex) {
             lb_add_message.setText("Problème dans le chargement des oeuvres de la base.");
         }
     }
 
     @FXML
+    private void update_cb_oeuvre(KeyEvent event) {
+        String strFiltre = tf_filteroeuvre_toadd.getText();
+        ArrayList<Oeuvre> newlist = filterHelperOeuvres.getWithFilter(strFiltre);
+        cb_oeuvre_toadd.setItems(FXCollections.observableArrayList(newlist));
+    }
+    
+    @FXML
+    private void update_cb_usager(KeyEvent event) {
+        String strFiltre = tf_filteremail_toadd.getText();
+        ArrayList<Usager> newlist = filterHelperUsagers.getWithFilter(strFiltre);
+        cb_usager_toadd.setItems(FXCollections.observableArrayList(newlist));
+    }
+
+    @FXML
     private void addReservation(ActionEvent event) {
         // Récupération des informations de l'interface
-        String strEmail = tf_email_toadd.getText();
-        int strIdoeuvre = Integer.parseInt(tf_idoeuvre_toadd.getText());
-        
+        String strEmail = cb_usager_toadd.getSelectionModel().getSelectedItem().getEmail();
+        String strIdoeuvre = cb_oeuvre_toadd.getSelectionModel().getSelectedItem().getISBN();
+
         // Construction d'une reservation
         Date currentDate = new GregorianCalendar().getTime();
         String dateCourante = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(currentDate);
         Reservation reservation = new Reservation(dateCourante, strEmail, strIdoeuvre);
-        
+
         try {
             // Insertion dans la base de données
             reservation.insert();
@@ -84,5 +98,5 @@ public class ReservationController implements Initializable {
             Logger.getLogger(ReservationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

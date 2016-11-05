@@ -38,19 +38,32 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <Label text="Adresse e-mail">
+                        <Label text="Utilisez ce champ pour trier les usagers affichés juste en-dessous.">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Italic" size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tf_email_toadd">
+                        <TextField fx:id="tf_filteremail_toadd" onKeyReleased="#update_cb_usager">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </TextField>
+                        <Label text="Sélectionner un usager">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ComboBox fx:id="cb_usager_toadd" prefHeight="25.0" prefWidth="1240.0">
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </ComboBox>
                         <Label text="Utilisez ce champ pour trier les oeuvres affichées juste en-dessous.">
                            <font>
                               <Font name="System Italic" size="16.0" />
@@ -59,7 +72,7 @@
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="tf_idoeuvre_toadd" onKeyPressed="#update_cb_oeuvre">
+                        <TextField fx:id="tf_filteroeuvre_toadd" onKeyReleased="#update_cb_oeuvre">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>

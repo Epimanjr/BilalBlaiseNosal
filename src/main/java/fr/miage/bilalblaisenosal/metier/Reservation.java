@@ -33,30 +33,30 @@ public class Reservation {
     /**
      * Identifiant de l'oeuvre réservée
      */
-    private int idOeuvre;
-    
+    private String ISBNOeuvre;
+
     /**
      * Construit une réservation
      *
      * @param dateDemande
      * @param emailUsager
      */
-    public Reservation(String dateDemande, String emailUsager, int idOeuvre) {
+    public Reservation(String dateDemande, String emailUsager, String idOeuvre) {
         this.dateDemande = dateDemande;
         this.emailUsager = emailUsager;
-        this.idOeuvre = idOeuvre;
+        this.ISBNOeuvre = idOeuvre;
     }
 
     public Reservation(HashMap<String, String> askedFields) {
         this.emailUsager = askedFields.get("emailUsager");
         this.dateDemande = askedFields.get("dateDemande");
-        this.idOeuvre = Integer.parseInt(askedFields.get("idOeuvre"));
+        this.ISBNOeuvre = askedFields.get("idOeuvre");
     }
 
     public void insert() throws SQLException {
-        String sql = "INSERT INTO reservation(emailUsager, dateDemande, idOeuvre) VALUES('" + this.emailUsager + "', '" + this.dateDemande + "', '" + this.idOeuvre + "');";
+        String sql = "INSERT INTO reservation(emailUsager, dateDemande, idOeuvre) VALUES('" + this.emailUsager + "', '" + this.dateDemande + "', '" + this.ISBNOeuvre + "');";
         Connector.insert(sql);
-        
+
         String lastIdSql = "SELECT LAST_INSERT_ID() AS id FROM reservation";
         ResultSet results = Connector.select(lastIdSql);
         if (results.next()) {
@@ -90,7 +90,7 @@ public class Reservation {
             int id = results.getInt("idReservation");
             String emailUsager = results.getString("emailUsager");
             String dateDemande = results.getString("dateDemande");
-            int idOeuvre = results.getInt("idOeuvre");
+            String idOeuvre = results.getString("idOeuvre");
 
             // Création d'une instance d'une reservation
             Reservation reservation = new Reservation(dateDemande, emailUsager, idOeuvre);
@@ -103,7 +103,11 @@ public class Reservation {
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 3;
+        hash = 59 * hash + this.id;
+        hash = 59 * hash + Objects.hashCode(this.dateDemande);
+        hash = 59 * hash + Objects.hashCode(this.emailUsager);
+        hash = 59 * hash + Objects.hashCode(this.ISBNOeuvre);
         return hash;
     }
 
@@ -122,13 +126,13 @@ public class Reservation {
         if (this.id != other.id) {
             return false;
         }
-        if (this.idOeuvre != other.idOeuvre) {
-            return false;
-        }
         if (!Objects.equals(this.dateDemande, other.dateDemande)) {
             return false;
         }
         if (!Objects.equals(this.emailUsager, other.emailUsager)) {
+            return false;
+        }
+        if (!Objects.equals(this.ISBNOeuvre, other.ISBNOeuvre)) {
             return false;
         }
         return true;
@@ -158,12 +162,12 @@ public class Reservation {
         this.emailUsager = emailUsager;
     }
 
-    public int getIdOeuvre() {
-        return idOeuvre;
+    public String getISBNOeuvre() {
+        return ISBNOeuvre;
     }
 
-    public void setIdOeuvre(int idOeuvre) {
-        this.idOeuvre = idOeuvre;
+    public void setISBNOeuvre(String ISBNOeuvre) {
+        this.ISBNOeuvre = ISBNOeuvre;
     }
 
 }
