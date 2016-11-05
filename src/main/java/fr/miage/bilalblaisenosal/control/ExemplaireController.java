@@ -36,6 +36,12 @@ public class ExemplaireController implements Initializable {
     @FXML
     private ComboBox<Oeuvre> cb_isbn_toadd;
     
+    @FXML
+    private TextField tf_isbn_toadd;
+    
+     private ArrayList<Oeuvre> oeuvres = new ArrayList<>();
+    private FilterHelper<Oeuvre> filterOeuvre;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Mettre les états 
@@ -47,12 +53,24 @@ public class ExemplaireController implements Initializable {
         
         try {
             // Mettre les oeuvres disponibles dans le ComboBox<Oeuvre>
-            ArrayList<Oeuvre> oeuvres = Oeuvre.getAllOeuvre();
+            oeuvres = Oeuvre.getAllOeuvre();
             cb_isbn_toadd.setItems(FXCollections.observableArrayList(oeuvres));
+            filterOeuvre = new FilterHelper<>("", oeuvres);
         } catch (SQLException ex) {
             // TODO Affichage d'un message d'erreur dans l'interface
             Logger.getLogger(ExemplaireController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+           
+    @FXML
+    private void update_cb_oeuvre(ActionEvent event) {
+        System.out.println("bonjour");
+        
+        String strFilter = tf_isbn_toadd.getText();
+        
+        ArrayList<Oeuvre> newList = filterOeuvre.getWithFilter(strFilter);
+        
+        cb_isbn_toadd.setItems(FXCollections.observableArrayList(newList));
     }
     
     @FXML

@@ -59,7 +59,7 @@
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="tf_isbn_toadd">
+                        <TextField fx:id="tf_isbn_toadd" onKeyReleased="#update_cb_oeuvre">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
