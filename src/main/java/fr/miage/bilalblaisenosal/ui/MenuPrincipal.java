@@ -1,5 +1,6 @@
 package fr.miage.bilalblaisenosal.ui;
 
+import fr.miage.bilalblaisenosal.bdd.DBHelper;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,8 @@ public class MenuPrincipal extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        DBHelper.fillWithExamples();
+        
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MenuPrincipal.fxml"));
         
         Scene scene = new Scene(root);

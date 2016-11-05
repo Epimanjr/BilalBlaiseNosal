@@ -20,7 +20,7 @@ public class DBHelper {
             // Ajout d'oeuvres
             Oeuvre o1 = new Oeuvre("XB2212", "Toto et ses potes", "Maxime");
             o1.insert();
-            Oeuvre o2 = new Oeuvre("XT5262", "La mer c'est beau", "Antoine");
+            Oeuvre o2 = new Oeuvre("XT5262", "La mer est belle", "Antoine");
             o2.insert();
             Oeuvre o3 = new Oeuvre("PO6922", "Programmer en Java", "Romain");
             o3.insert();
@@ -31,7 +31,7 @@ public class DBHelper {
             Usager u2 = new Usager("NOSAL", "Antoine", "antoine@mail.com", "0765325941");
             u2.insert();
             Usager u3 = new Usager("DENIS", "Guillaume", "denis@mail.com", "0614639852");
-            u2.insert();
+            u3.insert();
             
             // Ajout d'exemplaires
             Exemplaire e1 = new Exemplaire(Etat.ABIME.getValue(), "XB2212");
