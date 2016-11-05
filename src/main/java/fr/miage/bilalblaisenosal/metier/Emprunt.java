@@ -178,4 +178,10 @@ public class Emprunt {
         this.identifiantExemplaire = identifiantExemplaire;
     }
 
+    @Override
+    public String toString() {
+        return "Emprunt{" + "dateDebut=" + dateDebut + ", etat=" + etat + ", emailUsager=" + emailUsager + ", identifiantExemplaire=" + identifiantExemplaire + '}';
+    }
+
+    
 }
