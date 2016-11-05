@@ -101,7 +101,20 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <Label text="ISBN">
+                        <Label text="Utilisez ce champ pour trier les oeuvres affichées juste en-dessous.">
+                           <font>
+                              <Font name="System Italic" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="tf_filteroeuvre_todelete" onKeyReleased="#update_cb_oeuvre">
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Sélectionner une oeuvre">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -109,11 +122,11 @@
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="tf_isbn_todelete">
+                        <ComboBox fx:id="cb_oeuvre_todelete" prefHeight="25.0" prefWidth="1240.0">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
-                        </TextField>
+                        </ComboBox>
                         <Button mnemonicParsing="false" onAction="#deleteOeuvre" prefHeight="25.0" prefWidth="1240.0" text="Supprimer">
                            <font>
                               <Font size="16.0" />

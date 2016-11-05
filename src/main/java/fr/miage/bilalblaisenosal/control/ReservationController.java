@@ -50,7 +50,7 @@ public class ReservationController implements Initializable {
 
     @FXML
     private Label lb_add_message;
-    
+
     @FXML
     private Label lb_delete_message;
 
@@ -70,11 +70,19 @@ public class ReservationController implements Initializable {
             listeUsagers = Usager.getAllUsager();
             cb_usager_toadd.setItems(FXCollections.observableArrayList(listeUsagers));
             filterHelperUsagers = new FilterHelper<>("", listeUsagers);
+            this.listAllReservation();
+        } catch (SQLException ex) {
+            lb_add_message.setText("Problème dans le chargement de la base.");
+        }
+    }
+
+    private void listAllReservation() {
+        try {
             listeReservation = Reservation.getAllReservations();
             cb_resa_todelete.setItems(FXCollections.observableArrayList(listeReservation));
             filterHelperReservations = new FilterHelper<>("", listeReservation);
         } catch (SQLException ex) {
-            lb_add_message.setText("Problème dans le chargement des oeuvres de la base.");
+            lb_add_message.setText("Problème dans le chargement de la base.");
         }
     }
 
@@ -94,10 +102,6 @@ public class ReservationController implements Initializable {
 
     @FXML
     private void update_cb_resa(KeyEvent event) {
-        this.update_cb_resa_core();
-    }
-    
-    private void update_cb_resa_core() {
         String strFiltre = tf_filterresa_todelete.getText();
         ArrayList<Reservation> newlist = filterHelperReservations.getWithFilter(strFiltre);
         cb_resa_todelete.setItems(FXCollections.observableArrayList(newlist));
@@ -122,7 +126,7 @@ public class ReservationController implements Initializable {
             lb_add_message.setText("Un problème est survenu durant l'ajout dans la base.");
             Logger.getLogger(ReservationController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.update_cb_resa_core();
+        this.listAllReservation();
     }
 
     @FXML

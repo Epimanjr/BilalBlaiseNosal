@@ -1,4 +1,3 @@
-
 package fr.miage.bilalblaisenosal.control;
 
 import java.util.ArrayList;
@@ -8,12 +7,12 @@ import java.util.ArrayList;
  * @author Maxime BLAISE
  */
 public class FilterHelper<K> {
-    
+
     /**
      * Filtre choisi.
      */
     private String filter;
-    
+
     /**
      * Liste contenant toutes les instances.
      */
@@ -23,20 +22,22 @@ public class FilterHelper<K> {
         this.filter = filter;
         this.listAll = listAll;
     }
-    
+
     public ArrayList<K> getWithFilter() {
-        ArrayList<K> res = new ArrayList<K>();
-        
-        // Loop
-        for(K tmp: this.listAll) {
-            if(tmp.toString().toLowerCase().contains(this.filter)) {
-                res.add(tmp);
+        if (this.filter != "") {
+            ArrayList<K> res = new ArrayList<K>();
+
+            // Loop
+            for (K tmp : this.listAll) {
+                if (tmp.toString().toLowerCase().contains(this.filter)) {
+                    res.add(tmp);
+                }
             }
+            return res;
         }
-        
-        return res;
+        return this.listAll;
     }
-    
+
     public ArrayList<K> getWithFilter(String filterParam) {
         this.setFilter(filterParam);
         return this.getWithFilter();
@@ -58,6 +59,5 @@ public class FilterHelper<K> {
     public void setListAll(ArrayList<K> listAll) {
         this.listAll = listAll;
     }
-    
-    
+
 }

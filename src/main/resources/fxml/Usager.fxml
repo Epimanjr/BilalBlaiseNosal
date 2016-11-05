@@ -114,7 +114,20 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <Label text="Adresse e-mail">
+                        <Label text="Utilisez ce champ pour trier les usagers affichés juste en-dessous.">
+                           <font>
+                              <Font name="System Italic" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="tf_filterusager_todelete" onKeyReleased="#cb_update_usager">
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Sélectionner un usager">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -122,12 +135,12 @@
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="tf_email_todelete">
+                        <ComboBox fx:id="cb_usager_todelete" prefHeight="25.0" prefWidth="1240.0">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
-                        </TextField>
-                        <Button mnemonicParsing="false" onAction="#deleteUsager" prefHeight="25.0" prefWidth="1240.0" text="Supprimer">
+                        </ComboBox>
+                        <Button fx:id="bt_supprimer" mnemonicParsing="false" onAction="#deleteUsager" prefHeight="25.0" prefWidth="1240.0" text="Supprimer">
                            <font>
                               <Font size="16.0" />
                            </font>

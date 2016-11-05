@@ -12,8 +12,10 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 /**
  *
@@ -38,7 +40,10 @@ public class UsagerController implements Initializable {
     private Label lb_add_message;
     
     @FXML
-    private TextField tf_email_todelete;
+    private TextField tf_filterusager_todelete;
+    
+    @FXML
+    private ComboBox<Usager> cb_usager_todelete;
     
     @FXML
     private Label lb_delete_message;
@@ -62,6 +67,10 @@ public class UsagerController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
     }
 
+    private void update_cb_usager(KeyEvent event) {
+        //TODO
+    }
+    
     @FXML
     private void addUsager(ActionEvent event) {
         // Récupération des informations de l'interface
@@ -127,7 +136,7 @@ public class UsagerController implements Initializable {
     @FXML
     private void deleteUsager(ActionEvent event) {
         // Récupération des informations de l'interface
-        String email = tf_email_todelete.getText(); // TODO Récupérer l'id usager
+        String email = tf_filterusager_todelete.getText(); // TODO Récupérer l'id usager
 
         try {
             // Recherche de l'oeuvre concerné

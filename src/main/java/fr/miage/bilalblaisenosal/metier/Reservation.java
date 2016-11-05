@@ -175,7 +175,7 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return "[" + id + "] " + dateDemande + "(pour l'ISBN " + ISBNOeuvre + "par " + emailUsager + ")";
+        return "[" + id + "] " + dateDemande + " (pour l'ISBN " + ISBNOeuvre + " par " + emailUsager + ")";
     }
     
 }
