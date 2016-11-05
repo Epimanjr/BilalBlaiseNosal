@@ -43,12 +43,23 @@ public class ReservationController implements Initializable {
     private ComboBox<Oeuvre> cb_oeuvre_toadd;
 
     @FXML
+    private TextField tf_filterresa_todelete;
+
+    @FXML
+    private ComboBox<Reservation> cb_resa_todelete;
+
+    @FXML
     private Label lb_add_message;
+    
+    @FXML
+    private Label lb_delete_message;
 
     private ArrayList<Oeuvre> listeOeuvres = new ArrayList<>();
     private ArrayList<Usager> listeUsagers = new ArrayList<>();
+    private ArrayList<Reservation> listeReservation = new ArrayList<>();
     private FilterHelper<Oeuvre> filterHelperOeuvres;
     private FilterHelper<Usager> filterHelperUsagers;
+    private FilterHelper<Reservation> filterHelperReservations;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -59,6 +70,9 @@ public class ReservationController implements Initializable {
             listeUsagers = Usager.getAllUsager();
             cb_usager_toadd.setItems(FXCollections.observableArrayList(listeUsagers));
             filterHelperUsagers = new FilterHelper<>("", listeUsagers);
+            listeReservation = Reservation.getAllReservations();
+            cb_resa_todelete.setItems(FXCollections.observableArrayList(listeReservation));
+            filterHelperReservations = new FilterHelper<>("", listeReservation);
         } catch (SQLException ex) {
             lb_add_message.setText("Problème dans le chargement des oeuvres de la base.");
         }
@@ -70,12 +84,23 @@ public class ReservationController implements Initializable {
         ArrayList<Oeuvre> newlist = filterHelperOeuvres.getWithFilter(strFiltre);
         cb_oeuvre_toadd.setItems(FXCollections.observableArrayList(newlist));
     }
-    
+
     @FXML
     private void update_cb_usager(KeyEvent event) {
         String strFiltre = tf_filteremail_toadd.getText();
         ArrayList<Usager> newlist = filterHelperUsagers.getWithFilter(strFiltre);
         cb_usager_toadd.setItems(FXCollections.observableArrayList(newlist));
+    }
+
+    @FXML
+    private void update_cb_resa(KeyEvent event) {
+        this.update_cb_resa_core();
+    }
+    
+    private void update_cb_resa_core() {
+        String strFiltre = tf_filterresa_todelete.getText();
+        ArrayList<Reservation> newlist = filterHelperReservations.getWithFilter(strFiltre);
+        cb_resa_todelete.setItems(FXCollections.observableArrayList(newlist));
     }
 
     @FXML
@@ -97,6 +122,25 @@ public class ReservationController implements Initializable {
             lb_add_message.setText("Un problème est survenu durant l'ajout dans la base.");
             Logger.getLogger(ReservationController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        this.update_cb_resa_core();
+    }
+
+    @FXML
+    private void deleteReservation(ActionEvent event) {
+        //Récupération de l'identifiant de la réservation
+        int idResa = cb_resa_todelete.getSelectionModel().getSelectedItem().getId();
+
+        //Suppression de la reservation
+        Reservation resa_todelete = new Reservation();
+        resa_todelete.setId(idResa);
+        try {
+            resa_todelete.delete();
+            lb_delete_message.setText("La réservation a été supprimée de la base.");
+        } catch (SQLException ex) {
+            lb_delete_message.setText("Un problème est survenu durant la suppression dans la base.");
+            Logger.getLogger(ReservationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 }

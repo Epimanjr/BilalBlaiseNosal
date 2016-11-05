@@ -35,6 +35,9 @@ public class Reservation {
      */
     private String ISBNOeuvre;
 
+    public Reservation() {
+    }
+    
     /**
      * Construit une réservation
      *
@@ -170,4 +173,9 @@ public class Reservation {
         this.ISBNOeuvre = ISBNOeuvre;
     }
 
+    @Override
+    public String toString() {
+        return "[" + id + "] " + dateDemande + "(pour l'ISBN " + ISBNOeuvre + "par " + emailUsager + ")";
+    }
+    
 }

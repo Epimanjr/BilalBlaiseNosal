@@ -122,7 +122,7 @@
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="tf_resa_todelete">
+                        <TextField fx:id="tf_filterresa_todelete" onKeyReleased="#update_cb_resa">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
@@ -140,7 +140,7 @@
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </ComboBox>
-                        <Button fx:id="bt_delete" mnemonicParsing="false" prefHeight="25.0" prefWidth="1240.0" text="Supprimer">
+                        <Button fx:id="bt_delete" mnemonicParsing="false" onAction="#deleteReservation" prefHeight="25.0" prefWidth="1240.0" text="Supprimer">
                            <font>
                               <Font size="16.0" />
                            </font>
