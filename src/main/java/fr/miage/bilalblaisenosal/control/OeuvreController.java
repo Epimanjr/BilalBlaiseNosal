@@ -1,5 +1,6 @@
 package fr.miage.bilalblaisenosal.control;
 
+import fr.miage.bibalblaisenosal.helper.FilterHelper;
 import fr.miage.bilalblaisenosal.exception.OeuvreNotFoundException;
 import fr.miage.bilalblaisenosal.metier.Oeuvre;
 import java.net.URL;

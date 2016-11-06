@@ -1,6 +1,6 @@
 package fr.miage.bilalblaisenosal.ui;
 
-import fr.miage.bilalblaisenosal.bdd.DBHelper;
+import fr.miage.bibalblaisenosal.helper.DBHelper;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;

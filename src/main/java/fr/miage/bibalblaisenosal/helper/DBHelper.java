@@ -1,4 +1,4 @@
-package fr.miage.bilalblaisenosal.bdd;
+package fr.miage.bibalblaisenosal.helper;
 
 import fr.miage.bilalblaisenosal.metier.Etat;
 import fr.miage.bilalblaisenosal.metier.Exemplaire;

@@ -5,6 +5,7 @@
  */
 package fr.miage.bilalblaisenosal.control;
 
+import fr.miage.bibalblaisenosal.helper.FilterHelper;
 import fr.miage.bilalblaisenosal.exception.ObjetMetierNotFoundException;
 import fr.miage.bilalblaisenosal.metier.Etat;
 import fr.miage.bilalblaisenosal.metier.Exemplaire;
