@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.miage.bilalblaisenosal.control.UsagerController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.miage.bilalblaisenosal.back.control.UsagerController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
@@ -122,7 +122,7 @@
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="tf_filterusager_todelete" onKeyReleased="#cb_update_usager">
+                        <TextField fx:id="tf_filterusager_todelete" onKeyReleased="#update_cb_usager">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>

@@ -1,6 +1,6 @@
 package fr.miage.bilalblaisenosal.sequences;
 
-import fr.miage.bilalblaisenosal.metier.Usager;
+import fr.miage.bilalblaisenosal.common.metier.Usager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
