@@ -27,17 +27,17 @@ public class Exemplaire {
     /**
      * ISBN de l'oeuvre associé.
      */
-    private String oeuvre;
+    private String ISBNOeuvre;
 
     public Exemplaire(String identifiant, String etat, String oeuvre) {
         this.identifiant = identifiant;
         this.etat = etat;
-        this.oeuvre = oeuvre;
+        this.ISBNOeuvre = oeuvre;
     }
 
     public Exemplaire(String etat, String oeuvre) {
         this.etat = etat;
-        this.oeuvre = oeuvre;
+        this.ISBNOeuvre = oeuvre;
     }
 
     /**
@@ -96,7 +96,7 @@ public class Exemplaire {
      * @throws SQLException Problème avec la requête ou la BDD
      */
     public void insert() throws SQLException {
-        String sql = "INSERT INTO exemplaire(etat, oeuvre) VALUES('" + this.etat + "', '" + this.oeuvre + "');";
+        String sql = "INSERT INTO exemplaire(etat, oeuvre) VALUES('" + this.etat + "', '" + this.ISBNOeuvre + "');";
         Connector.insert(sql);
         
         String lastIdSql = "SELECT LAST_INSERT_ID() AS id FROM exemplaire";
@@ -116,7 +116,7 @@ public class Exemplaire {
     public void update() throws SQLException {
         String sql = "UPDATE exemplaire SET ";
         sql += "etat='" + this.etat + "', ";
-        sql += "oeuvre='" + this.oeuvre + "' ";
+        sql += "oeuvre='" + this.ISBNOeuvre + "' ";
         sql += "WHERE identifiant='" + this.identifiant + "';";
         Connector.insert(sql);
     }
@@ -136,7 +136,7 @@ public class Exemplaire {
         int hash = 7;
         hash = 23 * hash + Objects.hashCode(this.identifiant);
         hash = 23 * hash + Objects.hashCode(this.etat);
-        hash = 23 * hash + Objects.hashCode(this.oeuvre);
+        hash = 23 * hash + Objects.hashCode(this.ISBNOeuvre);
         return hash;
     }
 
@@ -158,7 +158,7 @@ public class Exemplaire {
         if (!Objects.equals(this.etat, other.etat)) {
             return false;
         }
-        if (!Objects.equals(this.oeuvre, other.oeuvre)) {
+        if (!Objects.equals(this.ISBNOeuvre, other.ISBNOeuvre)) {
             return false;
         }
         return true;
@@ -180,16 +180,16 @@ public class Exemplaire {
         this.etat = etat;
     }
 
-    public String getOeuvre() {
-        return oeuvre;
+    public String getISBNOeuvre() {
+        return ISBNOeuvre;
     }
 
-    public void setOeuvre(String oeuvre) {
-        this.oeuvre = oeuvre;
+    public void setISBNOeuvre(String ISBNOeuvre) {
+        this.ISBNOeuvre = ISBNOeuvre;
     }
 
     @Override
     public String toString() {
-        return "Exemplaire{" + "identifiant=" + identifiant + ", etat=" + etat + ", oeuvre=" + oeuvre + '}';
+        return "Exemplaire{" + "identifiant=" + identifiant + ", etat=" + etat + ", oeuvre=" + ISBNOeuvre + '}';
     }
 }

@@ -67,7 +67,7 @@ public class ExemplaireTest {
 
             // Vérification des informations
             assertEquals(exemplaire2.getIdentifiant(), exemplaire.getIdentifiant());
-            assertEquals(exemplaire2.getOeuvre(), oeuvre);
+            assertEquals(exemplaire2.getISBNOeuvre(), oeuvre);
             assertEquals(exemplaire2.getEtat(), etat);
         } catch (SQLException ex) {
             fail("Erreur de connexion à la base de données.");
@@ -89,7 +89,7 @@ public class ExemplaireTest {
 
             // Vérification des informations
             assertEquals(exemplaire2.getIdentifiant(), exemplaire.getIdentifiant());
-            assertEquals(exemplaire2.getOeuvre(), oeuvre);
+            assertEquals(exemplaire2.getISBNOeuvre(), oeuvre);
             assertEquals(exemplaire2.getEtat(), Etat.ABIME.getValue());
         } catch (SQLException | ObjetMetierNotFoundException  ex) {
             fail("Impossible de récupérer l'exemplaire mis à jour.");
