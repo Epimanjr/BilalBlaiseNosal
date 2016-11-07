@@ -2,6 +2,7 @@ package fr.miage.bilalblaisenosal.back.control;
 
 import fr.miage.bilalblaisenosal.common.helper.FilterHelper;
 import fr.miage.bilalblaisenosal.common.exception.OeuvreNotFoundException;
+import fr.miage.bilalblaisenosal.common.metier.Magazine;
 import fr.miage.bilalblaisenosal.common.metier.Oeuvre;
 import java.net.URL;
 import java.sql.SQLException;
@@ -33,6 +34,9 @@ public class OeuvreController implements Initializable {
     
     @FXML
     private TextField tf_editeur;
+    
+    @FXML
+    private TextField tf_parution;
     
     @FXML
     private Label lb_add_message;
@@ -67,7 +71,7 @@ public class OeuvreController implements Initializable {
         cb_oeuvre_todelete.setItems(FXCollections.observableArrayList(newlist));
     }
     
-    @FXML
+    /*@FXML
     private void addOeuvre(ActionEvent event) {
         // Récupération des informations de l'interface
         String strIsbn = tf_isbn_toadd.getText();
@@ -81,6 +85,27 @@ public class OeuvreController implements Initializable {
             // Insertion dans la base de données
             oeuvre.insert();
             lb_add_message.setText("L'oeuvre a été ajoutée dans la base.");
+        } catch (SQLException ex) {
+            lb_add_message.setText("Un problème est survenu durant l'ajout dans la base.");
+            Logger.getLogger(OeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }*/
+    
+    @FXML
+    private void addMagazine(ActionEvent event) {
+        // Récupération des informations de l'interface
+        String strIsbn = tf_isbn_toadd.getText();
+        String strTitre = tf_titre.getText();
+        String strEditeur = tf_editeur.getText();
+        String strParution = tf_parution.getText();
+        
+        // Construction d'une oeuvre
+        Magazine magazine = new Magazine(strIsbn, strTitre, strEditeur, strParution);
+        
+        try {
+            // Insertion dans la base de données
+            magazine.insert();
+            lb_add_message.setText("Le magazine a été ajoutée dans la base.");
         } catch (SQLException ex) {
             lb_add_message.setText("Un problème est survenu durant l'ajout dans la base.");
             Logger.getLogger(OeuvreController.class.getName()).log(Level.SEVERE, null, ex);

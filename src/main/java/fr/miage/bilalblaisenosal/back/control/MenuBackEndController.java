@@ -56,6 +56,16 @@ public class MenuBackEndController implements Initializable {
     }
     
     @FXML
+    private void launch_magazine(ActionEvent event) throws Exception {
+        this.launch("Oeuvre", "Gestion des oeuvres");
+    }
+    
+    @FXML
+    private void launch_livre(ActionEvent event) throws Exception {
+        this.launch("Oeuvre_suite", "Gestion des oeuvres");
+    }
+    
+    @FXML
     private void launch_exemplaire(ActionEvent event) throws Exception {
         this.launch("Exemplaire", "Gestion des exemplaires");
     }

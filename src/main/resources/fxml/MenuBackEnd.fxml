@@ -38,13 +38,21 @@
                               <Insets left="20.0" />
                            </VBox.margin>
                         </Label>
-                        <Button fx:id="bt_newOeuvre" alignment="CENTER" mnemonicParsing="false" onAction="#launch_oeuvre" prefHeight="40.0" prefWidth="1250.0" text="Ajouter une nouvelle oeuvre" textAlignment="CENTER">
+                        <Button fx:id="bt_newMagazine" alignment="CENTER" mnemonicParsing="false" onAction="#launch_magazine" prefHeight="40.0" prefWidth="1250.0" text="Ajouter un magazine" textAlignment="CENTER">
                            <VBox.margin>
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
                            <font>
                               <Font name="System Italic" size="14.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="bt_newLivre" alignment="CENTER" mnemonicParsing="false" onAction="#launch_livre" prefHeight="40.0" prefWidth="1250.0" text="Ajouter un livre" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Italic" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
                         </Button>
                         <Button fx:id="bt_deleteOeuvre" alignment="CENTER" mnemonicParsing="false" onAction="#launch_oeuvre" prefHeight="40.0" prefWidth="1250.0" text="Supprimer une oeuvre existante" textAlignment="CENTER">
                            <VBox.margin>
@@ -63,14 +71,6 @@
                            </font>
                         </Label>
                         <Button fx:id="bt_newExemplaire" alignment="CENTER" mnemonicParsing="false" onAction="#launch_exemplaire" prefHeight="40.0" prefWidth="1250.0" text="Ajouter un/des exemplaire(s)" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Italic" size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button fx:id="bt_updateExemplaire" alignment="CENTER" mnemonicParsing="false" onAction="#launch_exemplaire" prefHeight="40.0" prefWidth="1250.0" text="Modifier un exemplaire existant" textAlignment="CENTER">
                            <font>
                               <Font name="System Italic" size="14.0" />
                            </font>
