@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 27 Octobre 2016 à 15:39
+-- Généré le :  Lun 07 Novembre 2016 à 06:08
 -- Version du serveur :  10.1.13-MariaDB
 -- Version de PHP :  5.6.23
 
@@ -55,6 +55,17 @@ CREATE TABLE `exemplaire` (
   `identifiant` int(11) NOT NULL,
   `etat` varchar(20) NOT NULL,
   `oeuvre` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `magazine`
+--
+
+CREATE TABLE `magazine` (
+  `ISBN` varchar(20) NOT NULL,
+  `dateParution` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -118,6 +129,12 @@ ALTER TABLE `exemplaire`
   ADD PRIMARY KEY (`identifiant`);
 
 --
+-- Index pour la table `magazine`
+--
+ALTER TABLE `magazine`
+  ADD PRIMARY KEY (`ISBN`);
+
+--
 -- Index pour la table `oeuvre`
 --
 ALTER TABLE `oeuvre`
@@ -148,7 +165,7 @@ ALTER TABLE `auteur`
 -- AUTO_INCREMENT pour la table `exemplaire`
 --
 ALTER TABLE `exemplaire`
-  MODIFY `identifiant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `identifiant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `reservation`
 --
