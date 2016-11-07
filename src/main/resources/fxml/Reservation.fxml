@@ -90,7 +90,7 @@
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </ComboBox>
-                        <Button fx:id="bt_ajouter" mnemonicParsing="false" onAction="#addReservation" prefHeight="25.0" prefWidth="1240.0" text="Ajouter">
+                        <Button fx:id="bt_ajouter" mnemonicParsing="false" onAction="#addReservation" prefHeight="25.0" prefWidth="1240.0" text="Enregistrer cette réservation">
                            <VBox.margin>
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
@@ -106,7 +106,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label text="[SUPPRESSION]">
+                        <Label text="[ANNULATION]">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -140,7 +140,7 @@
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
                         </ComboBox>
-                        <Button fx:id="bt_delete" mnemonicParsing="false" onAction="#deleteReservation" prefHeight="25.0" prefWidth="1240.0" text="Supprimer">
+                        <Button fx:id="bt_delete" mnemonicParsing="false" onAction="#deleteReservation" prefHeight="25.0" prefWidth="1240.0" text="Annuler cette réservation">
                            <font>
                               <Font size="16.0" />
                            </font>

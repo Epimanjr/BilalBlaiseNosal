@@ -99,17 +99,39 @@ public class OeuvreController implements Initializable {
         String strEditeur = tf_editeur.getText();
         String strParution = tf_parution.getText();
         
-        // Construction d'une oeuvre
+        // Construction d'un magazine
         Magazine magazine = new Magazine(strIsbn, strTitre, strEditeur, strParution);
         
         try {
             // Insertion dans la base de données
             magazine.insert();
-            lb_add_message.setText("Le magazine a été ajoutée dans la base.");
+            lb_add_message.setText("Le magazine a été ajouté dans la base.");
         } catch (SQLException ex) {
             lb_add_message.setText("Un problème est survenu durant l'ajout dans la base.");
             Logger.getLogger(OeuvreController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    @FXML
+    private void addLivre(ActionEvent event) {
+        // Récupération des informations de l'interface
+        String strIsbn = tf_isbn_toadd.getText();
+        String strTitre = tf_titre.getText();
+        String strEditeur = tf_editeur.getText();
+        String strEdition = tf_parution.getText();
+        //String strPrenomNomAuteur = tf_auteur.getText();
+        
+        // Construction d'un livre
+        //Livre livre = new Livre(strIsbn, strTitre, strEditeur, strEdition, strPrenomAuteur, strNomAuteur);
+        
+        /*try {
+            // Insertion dans la base de données
+            //livre.insert();
+            lb_add_message.setText("Le livre a été ajouté dans la base.");
+        } catch (SQLException ex) {
+            lb_add_message.setText("Un problème est survenu durant l'ajout dans la base.");
+            Logger.getLogger(OeuvreController.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
     }
     
     @FXML

@@ -70,7 +70,7 @@
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <Button fx:id="bt_newExemplaire" alignment="CENTER" mnemonicParsing="false" onAction="#launch_exemplaire" prefHeight="40.0" prefWidth="1250.0" text="Ajouter un/des exemplaire(s)" textAlignment="CENTER">
+                        <Button fx:id="bt_newExemplaire" alignment="CENTER" mnemonicParsing="false" onAction="#launch_exemplaire" prefHeight="40.0" prefWidth="1250.0" text="Ajouter un exemplaire" textAlignment="CENTER">
                            <font>
                               <Font name="System Italic" size="14.0" />
                            </font>
@@ -78,7 +78,7 @@
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="bt_deleteExemplaire" alignment="CENTER" mnemonicParsing="false" onAction="#launch_exemplaire" prefHeight="40.0" prefWidth="1250.0" text="Supprimer un/des exemplaire(s)" textAlignment="CENTER">
+                        <Button fx:id="bt_deleteExemplaire" alignment="CENTER" mnemonicParsing="false" onAction="#launch_exemplaire" prefHeight="40.0" prefWidth="1250.0" text="Supprimer un exemplaire" textAlignment="CENTER">
                            <font>
                               <Font name="System Italic" size="14.0" />
                            </font>
