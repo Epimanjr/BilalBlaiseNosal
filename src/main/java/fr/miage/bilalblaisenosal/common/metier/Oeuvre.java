@@ -18,7 +18,7 @@ import java.util.Objects;
  */
 public class Oeuvre {
     
-    private final String ISBN;
+    private String ISBN;
     private String titre;
     private String editeur;
 
@@ -141,7 +141,9 @@ public class Oeuvre {
         return true;
     }
     
-    
+    public void setISBN(String isbn) {
+        this.ISBN = isbn;
+    }
 
     public String getISBN() {
         return ISBN;

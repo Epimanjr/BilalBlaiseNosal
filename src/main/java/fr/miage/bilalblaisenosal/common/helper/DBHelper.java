@@ -2,6 +2,7 @@ package fr.miage.bilalblaisenosal.common.helper;
 
 import fr.miage.bilalblaisenosal.common.metier.Etat;
 import fr.miage.bilalblaisenosal.common.metier.Exemplaire;
+import fr.miage.bilalblaisenosal.common.metier.Magazine;
 import fr.miage.bilalblaisenosal.common.metier.Oeuvre;
 import fr.miage.bilalblaisenosal.common.metier.Usager;
 import java.sql.SQLException;
@@ -17,12 +18,21 @@ public class DBHelper {
     
     public static void fillWithExamples() {
         try {
+            /*
             // Ajout d'oeuvres
             Oeuvre o1 = new Oeuvre("XB2212", "Toto et ses potes", "Maxime");
             o1.insert();
             Oeuvre o2 = new Oeuvre("XT5262", "La mer est belle", "Antoine");
             o2.insert();
             Oeuvre o3 = new Oeuvre("PO6922", "Programmer en Java", "Romain");
+            o3.insert();*/
+            
+            //Ajout de magazines
+            Magazine o1 = new Magazine("XB2212", "Toto et ses potes", "Maxime", "2005-05-21");
+            o1.insert();
+            Magazine o2 = new Magazine("XT5262", "La mer est belle", "Antoine", "2008-12-12");
+            o2.insert();
+            Magazine o3 = new Magazine("PO6922", "Programmer en Java", "Romain", "2015-03-05");
             o3.insert();
             
             // Ajout d'usagers
