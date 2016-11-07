@@ -110,13 +110,17 @@ public class ReservationController implements Initializable {
 
     @FXML
     private void addReservation(ActionEvent event) {
-        // Récupération des informations de l'interface
+        // Identification de l'usager
         String strEmail = cb_usager_toadd.getSelectionModel().getSelectedItem().getEmail();
+        
+        // Identification de l'oeuvre
         String strIdoeuvre = cb_oeuvre_toadd.getSelectionModel().getSelectedItem().getISBN();
 
-        // Construction d'une reservation
+        // Récupération de la date courante
         Date currentDate = new GregorianCalendar().getTime();
         String dateCourante = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(currentDate);
+        
+        // Construction d'une réservation
         Reservation reservation = new Reservation(dateCourante, strEmail, strIdoeuvre);
 
         try {
